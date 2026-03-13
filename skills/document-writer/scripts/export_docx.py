@@ -14,7 +14,6 @@ from pathlib import Path
 from defusedxml import ElementTree as ET
 
 
-FIGURE_CAPTION_PATTERN = re.compile(r"<!--\s*FigureCaption:\s*(.+?)\s*-->")
 MERMAID_BLOCK_PATTERN = re.compile(
     r"(?:<!--\s*FigureCaption:\s*(?P<caption>.+?)\s*-->\s*)?"
     r":::mermaid\s*\n(?P<body>.*?)\n:::\s*",
@@ -200,7 +199,7 @@ def preprocess_mermaid_blocks(
             env=env,
         )
         rel_path = image_path.relative_to(working_dir).as_posix()
-        return f"![{caption}]({rel_path})\n"
+        return f"\n![diagram]({rel_path})\n\n{caption}\n\n"
 
     transformed = MERMAID_BLOCK_PATTERN.sub(replace, markdown_text)
     return transformed, figure_index
@@ -290,6 +289,44 @@ def move_toc_after_executive_summary(docx_path: Path) -> None:
         rebuilt.replace(docx_path)
 
 
+def apply_image_caption_style(docx_path: Path, style_name: str = "ImageCaption") -> None:
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_path = Path(temp_dir)
+        with zipfile.ZipFile(docx_path) as archive:
+            archive.extractall(temp_path)
+
+        document_xml = temp_path / "word" / "document.xml"
+        tree = ET.parse(document_xml)
+        root = tree.getroot()
+
+        changed = False
+        for paragraph in root.findall(".//w:p", XML_NS):
+            text = "".join(node.text or "" for node in paragraph.findall(".//w:t", XML_NS)).strip()
+            if not text.startswith("Figure "):
+                continue
+            p_pr = paragraph.find("w:pPr", XML_NS)
+            if p_pr is None:
+                p_pr = ET.Element(f"{W}pPr")
+                paragraph.insert(0, p_pr)
+            p_style = p_pr.find("w:pStyle", XML_NS)
+            if p_style is None:
+                p_style = ET.SubElement(p_pr, f"{W}pStyle")
+            p_style.set(f"{W}val", style_name)
+            changed = True
+
+        if not changed:
+            return
+
+        tree.write(document_xml, encoding="UTF-8", xml_declaration=True)
+
+        rebuilt = docx_path.with_suffix(".tmp.docx")
+        with zipfile.ZipFile(rebuilt, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for path in sorted(temp_path.rglob("*")):
+                if path.is_file():
+                    archive.write(path, path.relative_to(temp_path))
+        rebuilt.replace(docx_path)
+
+
 def main() -> None:
     args = parse_args()
 
@@ -355,6 +392,7 @@ def main() -> None:
         run(cmd, env=pandoc_env)
     if args.toc:
         move_toc_after_executive_summary(output_path)
+    apply_image_caption_style(output_path)
     print(f"[export_docx] Wrote {output_path}")
 
 

@@ -254,8 +254,8 @@ def test_document_writer_mermaid_preprocessing_contract() -> None:
     assert_true(len(calls) == 1, "document-writer: Mermaid preprocessing did not render the diagram")
     assert_true("flowchart LR" in calls[0][0], "document-writer: Mermaid source was not passed through")
     assert_true(
-        "![Figure 1: Example diagram](media/mermaid-figure-01.png)" in transformed,
-        "document-writer: Mermaid block was not replaced with a captioned image",
+        "![diagram](media/mermaid-figure-01.png)" in transformed and "Figure 1: Example diagram" in transformed,
+        "document-writer: Mermaid block was not replaced with a standalone image and caption",
     )
 
 
