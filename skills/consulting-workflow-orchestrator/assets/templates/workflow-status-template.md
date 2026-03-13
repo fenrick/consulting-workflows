@@ -1,5 +1,4 @@
 # Workflow Status
 
-| Stage | Status (`ready`/`blocked`) | Last update | Notes |
-|---|---|---|---|
-
+| Stage | Status (`ready`/`blocked`/`in-progress`) | Current artifact | Last update | Next gate | Notes |
+|---|---|---|---|---|---|

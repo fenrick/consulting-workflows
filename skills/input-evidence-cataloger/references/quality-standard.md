@@ -1,8 +1,22 @@
-# Skill Quality Standard
+# Input Evidence Catalog Quality Standard
 
-- keep outputs factual and source-bound
-- tag unknowns explicitly
-- separate facts from interpretation
-- update `tracking/open-questions.md` for unresolved gaps
-- keep judgment calls in `tracking/decision-log.md` when applicable
+## Core standard
 
+- Outputs stay factual and source-bound.
+- Unknowns are explicit.
+- Facts and interpretation stay separate.
+- Supersession calls are recorded with rationale.
+
+## Writing standard
+
+- Prefer direct extraction over paraphrase when precision matters.
+- Avoid recommendations and storyline language.
+- Use plain, neutral wording.
+- Humanise awkward machine phrasing without changing factual meaning.
+
+## Tracking standard
+
+- `tracking/source-register.md` holds provenance and status.
+- `tracking/review-notebook.md` holds extracted factual observations.
+- `tracking/open-questions.md` holds unresolved metadata and evidence gaps.
+- `inputs/processed/document-map.md` holds structure and replacement relationships.

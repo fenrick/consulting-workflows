@@ -2,18 +2,23 @@
 
 ## Purpose and scope
 
-## Participants
+## Participants and roles
 
 ## Agenda and session flow
 
 ## Key discussion themes
 
+| Theme | Summary | Evidence source | Confidence | Notes |
+|---|---|---|---|---|
+
 ## Decisions made
+
+| Decision | Evidence source | Confidence | Notes |
+|---|---|---|---|
 
 ## Action items
 
-| Action | Owner | Timing | Evidence source |
-|---|---|---|---|
+| Action | Owner | Timing signal | Evidence source | Notes |
+|---|---|---|---|---|
 
 ## Unresolved issues
-

@@ -1,5 +1,4 @@
 # Open Questions
 
-| ID | Section | Gap | Blocking | Next step |
-|---|---|---|---|---|
-
+| ID | Section | Evidence gap | Blocking (`yes`/`no`) | Owner | Next step |
+|---|---|---|---|---|---|

@@ -1,5 +1,4 @@
 # Open Questions
 
-| ID | Question | Blocking | Owner | Next step |
-|---|---|---|---|---|
-
+| ID | Missing metadata or contradiction | Source(s) affected | Blocking (`yes`/`no`) | Owner | Next step |
+|---|---|---|---|---|---|

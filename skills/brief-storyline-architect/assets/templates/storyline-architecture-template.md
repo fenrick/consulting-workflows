@@ -4,12 +4,16 @@
 
 ## Audience and decision context
 
+## Scope and out-of-scope boundaries
+
 ## Top-level answer
 
 ## Pillars
 
-| Pillar | Claim | Evidence required | Risks/objections |
-|---|---|---|---|
+| Pillar | Claim | Support logic bullets | Evidence required | Objections / risks | Implication |
+|---|---|---|---|---|---|
 
-## Unresolved proof gaps
+## Proof gaps
 
+| ID | Gap | Affected pillar | Impact | Next step | Owner |
+|---|---|---|---|---|---|

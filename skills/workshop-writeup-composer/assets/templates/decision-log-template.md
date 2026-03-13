@@ -1,5 +1,4 @@
 # Decision Log
 
-| Date | Decision | Evidence source | Impact | Owner |
-|---|---|---|---|---|
-
+| Date | Decision | Evidence source | Impact | Owner | Notes |
+|---|---|---|---|---|---|

@@ -1,0 +1,14 @@
+# Evidence Consistency Audit Term Sheet
+
+- `contradiction`: two claims that cannot both stand as written
+- `weak support`: a claim with insufficient evidence but no direct contradiction
+- `supersession`: one source replacing another as the current baseline
+- `residual risk`: a known problem left open by choice or constraint
+- `issue status`: the current state of an audit item
+- `source strength`: how reliable and direct the evidence is
+
+## Usage rules
+
+- Prefer `contradiction` only for real incompatibility.
+- Prefer `weak support` for under-evidenced claims.
+- Use `residual risk` when a problem remains by decision, not accident.
