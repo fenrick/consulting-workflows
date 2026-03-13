@@ -290,8 +290,9 @@ For substantial work, run these passes as a loop, not a single sweep:
 4. narrative flow pass
 5. humanise the awkward machine phrasing
 6. restore neutral voice and simple language
-7. read the whole document in sequence
-8. repeat until the flow holds together cleanly
+7. run the humaniser again
+8. read the whole document in sequence
+9. repeat until the flow holds together cleanly and the latest humaniser pass makes only trivial changes
 
 The loop matters because a document that reads well section by section can still fail once read end to end.
 
@@ -381,13 +382,20 @@ Check for:
 - advisory or strategic tone where the document should stay descriptive
 - inconsistent framing between the front end and later sections
 
-Run the `humanizer` skill as the final check. Keep the document voice; remove the machine habits.
+Run the `humanizer` skill as repeated final checks, not one token pass. Keep the document voice; remove the machine habits.
+
+Minimum release expectation:
+
+- run the humaniser at least twice on substantial documentation
+- review the output after each pass
+- stop only when the next pass would make trivial or no meaningful changes
 
 ## 13. Use skills deliberately
 
 Use the smallest relevant skill set for the task. In environments that provide companion skills, the usual choices are:
 
 - `humanizer` for the final prose-quality pass on every substantial document change
+- `humanizer` should usually be run multiple times near release rather than once
 - `doc` when packaged document output, Writage behaviour, or layout fidelity matters after the content workflow is already in place
 - `pdf` when PDF rendering, pagination, or extraction fidelity matters
 - `slides` when building or editing editable diagrams, figures, or presentation assets

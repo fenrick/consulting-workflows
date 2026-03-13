@@ -10,6 +10,7 @@
 ## Authoring standard
 
 - Use the cyclic drafting loop for substantial work: skeleton, bullet points, paragraphs, narrative flow, humanise, neutral voice and simple language.
+- Near release, run the humaniser pass multiple times until successive passes stop finding meaningful cleanup.
 - Keep tone plain, neutral, and evidence-led.
 - Use APA v7 as the default bibliography style unless the user explicitly overrides it.
 - Use Pandoc/Writage citations in source markdown such as `[@key]`; do not hand-roll citation formatting in prose.

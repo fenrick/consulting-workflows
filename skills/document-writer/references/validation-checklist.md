@@ -34,7 +34,8 @@
 - Abstract nouns do not pile up in the weakest sections.
 - Later paragraphs are not overloaded with linked ideas before the sentence lands.
 - The cyclic authoring loop was actually used for substantial revisions: skeleton, bullet points, paragraphs, narrative flow, humanise, neutral voice and simple language.
-- A final prose-quality pass has been run, and any edits from that pass still preserve the approved departmental tone.
+- Multiple humaniser passes were run near release, and the final pass made only trivial or no meaningful changes.
+- Any edits from the final prose-quality pass still preserve the approved departmental tone.
 
 ## Content checks
 

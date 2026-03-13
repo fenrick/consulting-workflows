@@ -25,6 +25,9 @@
 - figure captions check:
 - table captions check:
 - Mermaid render refresh:
+- humaniser pass 1:
+- humaniser pass 2:
+- additional humaniser pass needed:
 - final voice pass:
 
 ## Next pass

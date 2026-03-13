@@ -33,6 +33,7 @@ Use this skill when the task needs disciplined document workflow ownership, not 
 - keep scripts as transform/export tooling only
 - do not store substantive narrative in generator code
 - build every substantial document through the cyclic loop: skeleton, bullet points, paragraphs, narrative flow, humanise, neutral voice and simple language
+- run multiple humaniser passes near release, not a single cleanup pass
 
 Apply quality checks from `references/quality-standard.md`.
 
