@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/fenrick/consulting-workflows/compare/v1.2.0...v1.3.0) (2026-03-13)
+
+
+### Features
+
+* **pages:** generate and deploy per-skill docs site ([0bfb45f](https://github.com/fenrick/consulting-workflows/commit/0bfb45fed3e2ea8214b756c6f1ba8a10e582c709))
+
 # [1.2.0](https://github.com/fenrick/consulting-workflows/compare/v1.1.0...v1.2.0) (2026-03-13)
 
 
