@@ -218,6 +218,7 @@ If the figure starts as Mermaid:
 - keep the editable `.mmd` source in `report-body/diagrams/` or an equivalent tracked path
 - use the bundled ELK-based neutral config unless the document has a stronger visual requirement
 - render a high-resolution PNG for embedding with `python3 scripts/render_mermaid.py`
+- expect the export path to place Mermaid figures at a controlled document width rather than stretching every figure to full page width
 - keep the SVG output if future editing is likely
 - record the render path in the editorial pass log if someone else will package the document
 
@@ -366,6 +367,7 @@ Defaults:
 - reference doc: `assets/reference.docx`
 - bibliography: assembled bibliography if present, otherwise the source bibliography
 - table of contents: generated from level 1 headings unless deliberately disabled
+- Mermaid fenced blocks with `<!-- FigureCaption: ... -->` comments are preprocessed into embedded PNG figures with styled `ImageCaption` paragraphs
 
 If Pandoc or the reference doc is missing, stop and fix the toolchain rather than improvising a less repeatable path.
 
