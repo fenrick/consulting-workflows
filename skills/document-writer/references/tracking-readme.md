@@ -1,27 +1,12 @@
 # Tracking Templates
 
-These files are shells for new document streams or reset branches.
+## Purpose
 
-Copy and rename the ones you need. Keep live trackers near the project root if the user already works that way, or keep them inside `tracking/active/` if starting clean.
+These templates are the operating files for substantial document work. They keep scope, sources, findings, editorial state, and release checks visible outside the draft itself.
 
-Suggested set for a serious document:
+Use the full set when the document has multiple sections, mixed sources, or a non-trivial review and release path.
 
-- `document-brief-template.md`
-- `source-register-template.md`
-- `section-status-template.md`
-- `decision-log-template.md`
-- `open-questions-template.md`
-- `editorial-pass-template.md`
-- `release-check-template.md`
-- `review-notebook-template.md`
-- `findings-workbook-template.md`
-
-For reviews, audits, and substantial document-analysis work:
-
-- use `review-notebook-template.md` while processing sources
-- use `findings-workbook-template.md` once patterns start hardening into reportable findings
-
-Template intent:
+## Template roles
 
 - `document-brief-template.md`: lock scope, audience, output format, and hard constraints before drafting
 - `source-register-template.md`: track provenance, citation readiness, and safe-use boundaries for each source
@@ -33,4 +18,8 @@ Template intent:
 - `review-notebook-template.md`: preserve observations and tentative findings during source intake
 - `findings-workbook-template.md`: harden emerging findings into report-ready patterns
 
-Do not over-manage trivial work. Use the full set when the document has multiple sections, mixed sources, or a non-trivial review and release path.
+## Working rule
+
+Copy and rename the templates you need into the target repo's `tracking/` area. Keep live trackers near the project root if the target repo already works that way, or keep them inside `tracking/active/` if starting clean.
+
+Update them during the work, not after release.
