@@ -1,0 +1,4 @@
+interface:
+  display_name: "Input Evidence Cataloger"
+  short_description: "Catalog inputs and extract factual evidence statements"
+  default_prompt: "Use this skill to inventory and parse input documents into a factual evidence catalog with metadata, supersession mapping, archive/folder maps, and open questions."
