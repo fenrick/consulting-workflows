@@ -245,6 +245,8 @@ def main() -> int:
                 "interface:",
                 "display_name:",
                 "short_description:",
+                "card_description:",
+                "version:",
                 "default_prompt:",
             ):
                 if required_key not in yaml_text:

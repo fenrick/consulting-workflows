@@ -575,8 +575,10 @@ class SkillDoc:
     slug: str
     title: str
     name: str
+    version: str
     description: str
     short_description: str
+    card_description: str
     intro_html: str
     sections: list[tuple[str, str]]
     file_paths: list[str]
@@ -951,8 +953,10 @@ def build_skill_docs() -> list[SkillDoc]:
                 slug=skill_dir.name,
                 title=ui.get("display_name") or title or skill_dir.name,
                 name=frontmatter.get("name", skill_dir.name),
+                version=ui.get("version", ""),
                 description=frontmatter.get("description", ""),
                 short_description=ui.get("short_description", ""),
+                card_description=ui.get("card_description", ""),
                 intro_html=render_markdown(intro_text),
                 sections=[(heading, render_markdown(content)) for heading, content in sections if content],
                 file_paths=file_inventory(skill_dir),
@@ -1013,12 +1017,13 @@ def page_template(
 def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str:
     cards = []
     for skill in skills:
-        summary = compact_summary(skill.short_description or skill.description)
+        summary = compact_summary(skill.card_description or skill.short_description or skill.description)
         cards.append(
             f"""
             <article class="skill-card">
               <div class="meta-row">
                 <span class="pill">{html.escape(skill.name)}</span>
+                <span class="pill alt">v{html.escape(skill.version)}</span>
                 <span class="pill alt">{len(skill.file_paths)} files</span>
                 <span class="pill alt">{len(skill.reference_docs)} reference docs</span>
               </div>
@@ -1159,7 +1164,7 @@ def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
         for heading, content in skill.sections
     )
     files_html = "".join(f"<li><code>{html.escape(path)}</code></li>" for path in skill.file_paths)
-    summary = skill.short_description or skill.description
+    summary = skill.short_description or skill.card_description or skill.description
     body = f"""
     <section class="hero hero-skill">
       <div class="hero-card">
@@ -1179,6 +1184,7 @@ def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
           <h3>At a glance</h3>
           <div class="meta-row">
             <span class="pill">{html.escape(skill.name)}</span>
+            <span class="pill alt">v{html.escape(skill.version)}</span>
             <span class="pill alt">{len(skill.file_paths)} files</span>
           </div>
           <p class="lead">{html.escape(skill.description)}</p>

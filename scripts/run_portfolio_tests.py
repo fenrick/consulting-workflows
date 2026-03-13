@@ -33,6 +33,8 @@ EXPECTED_SKILLS = {
     "document-writer",
 }
 
+EXPECTED_SKILL_VERSION = "1.4.0"
+
 REQUIRED_TRACKING_FILES = {
     "document-brief.md",
     "source-register.md",
@@ -77,6 +79,27 @@ def parse_skill_name(text: str) -> str:
     raise TestFailure("Missing `name:` in SKILL.md frontmatter")
 
 
+def parse_openai_interface_yaml(path: Path) -> dict[str, str]:
+    in_interface = False
+    data: dict[str, str] = {}
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.rstrip()
+        if not line.strip():
+            continue
+        if not in_interface:
+            if line.strip() == "interface:":
+                in_interface = True
+            continue
+        if not raw_line.startswith("  "):
+            break
+        stripped = line.strip()
+        if ":" not in stripped:
+            continue
+        key, value = stripped.split(":", 1)
+        data[key.strip()] = value.strip().strip('"').strip("'")
+    return data
+
+
 def parse_output_paths_in_section(text: str, section_heading: str) -> list[str]:
     lines = text.splitlines()
     start = None
@@ -107,6 +130,24 @@ def test_skill_set_complete() -> None:
         found.add(parse_skill_name(path.read_text(encoding="utf-8")))
     missing = EXPECTED_SKILLS - found
     assert_true(not missing, f"Missing expected skills: {sorted(missing)}")
+
+
+def test_openai_metadata_contract() -> None:
+    for skill_dir in sorted(path for path in SKILLS_DIR.iterdir() if path.is_dir()):
+        openai_yaml = skill_dir / "agents" / "openai.yaml"
+        assert_true(openai_yaml.exists(), f"{skill_dir.name}: missing agents/openai.yaml")
+        interface = parse_openai_interface_yaml(openai_yaml)
+        for key in ("display_name", "short_description", "card_description", "version", "default_prompt"):
+            assert_true(interface.get(key), f"{skill_dir.name}: missing interface.{key}")
+        card_description = " ".join(str(interface["card_description"]).split())
+        assert_true(
+            len(card_description) <= 80,
+            f"{skill_dir.name}: interface.card_description exceeds 80 characters",
+        )
+        assert_true(
+            str(interface["version"]) == EXPECTED_SKILL_VERSION,
+            f"{skill_dir.name}: interface.version must be {EXPECTED_SKILL_VERSION}",
+        )
 
 
 def test_output_contracts() -> None:
@@ -424,6 +465,7 @@ def main() -> int:
     tests = [
         ("structure lint", test_structure_lint),
         ("skill set complete", test_skill_set_complete),
+        ("openai metadata contract", test_openai_metadata_contract),
         ("output contracts", test_output_contracts),
         ("orchestrator pipeline consistency", test_orchestrator_pipeline_consistency),
         ("document-writer output contract", test_document_writer_output_contract),

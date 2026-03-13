@@ -1,4 +1,6 @@
 interface:
   display_name: "Presentation Storyboard Builder"
   short_description: "Convert storyline into slide narrative skeleton"
+  card_description: "Turn validated storylines into slide-by-slide presentation storyboards."
+  version: "1.4.0"
   default_prompt: "Use this skill to convert a validated storyline into a presentation storyboard with slide purpose, key message, evidence payload, and narrative transitions."

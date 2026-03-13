@@ -1,4 +1,6 @@
 interface:
   display_name: "Workshop Writeup Composer"
   short_description: "Generate formal workshop writeups from transcripts and artifacts"
+  card_description: "Turn workshop transcripts and artifacts into formal writeups and actions."
+  version: "1.4.0"
   default_prompt: "Use this skill to convert workshop transcripts and input/output materials into a formal write-up with decisions, outputs, action items, and unresolved issues."

@@ -1,4 +1,6 @@
 interface:
   display_name: "Report Storyboard Builder"
   short_description: "Convert storyline into written report skeleton"
+  card_description: "Turn validated storylines into written report storyboards and drafting order."
+  version: "1.4.0"
   default_prompt: "Use this skill to convert a validated storyline into a written report storyboard with section purpose, claims, evidence hooks, and drafting order."
