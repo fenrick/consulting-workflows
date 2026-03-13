@@ -21,6 +21,11 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc librsvg2-bin
+
       - name: Validate skill portfolio
         run: python3 scripts/validate_skill_portfolio.py
 
