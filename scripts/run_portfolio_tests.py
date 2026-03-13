@@ -8,6 +8,7 @@ import sys
 import tempfile
 import zipfile
 import json
+import importlib.util
 from pathlib import Path
 
 
@@ -222,6 +223,40 @@ def test_document_writer_mermaid_tooling_contract() -> None:
     script_text = render_script.read_text(encoding="utf-8")
     assert_true("DEFAULT_WIDTH = 3200" in script_text, "document-writer: Mermaid width default regressed")
     assert_true("DEFAULT_SCALE = 5" in script_text, "document-writer: Mermaid scale default regressed")
+
+
+def test_document_writer_mermaid_preprocessing_contract() -> None:
+    export_script = SKILLS_DIR / "document-writer" / "scripts" / "export_docx.py"
+    spec = importlib.util.spec_from_file_location("document_writer_export_docx", export_script)
+    assert_true(spec is not None and spec.loader is not None, "document-writer: could not load export_docx module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    calls: list[tuple[str, str]] = []
+
+    def fake_render(renderer_script, mermaid_source, output_dir, basename, env=None):
+        calls.append((mermaid_source, basename))
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_file = output_dir / f"{basename}.png"
+        output_file.write_bytes(b"png")
+        return output_file
+
+    module.render_mermaid_block = fake_render
+    sample = """Intro text.\n\n<!-- FigureCaption: Figure 1: Example diagram -->\n:::mermaid\nflowchart LR\n  A-->B\n:::\n"""
+    with tempfile.TemporaryDirectory() as tmp:
+        transformed, count = module.preprocess_mermaid_blocks(
+            markdown_text=sample,
+            renderer_script=export_script.parent / "render_mermaid.py",
+            working_dir=Path(tmp),
+            env=None,
+        )
+    assert_true(count == 1, "document-writer: Mermaid preprocessing did not count diagrams correctly")
+    assert_true(len(calls) == 1, "document-writer: Mermaid preprocessing did not render the diagram")
+    assert_true("flowchart LR" in calls[0][0], "document-writer: Mermaid source was not passed through")
+    assert_true(
+        "![Figure 1: Example diagram](media/mermaid-figure-01.png)" in transformed,
+        "document-writer: Mermaid block was not replaced with a captioned image",
+    )
 
 
 def test_prohibited_wording() -> None:
