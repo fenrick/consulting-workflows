@@ -1,28 +1,58 @@
-# Consulting Workflows Skills
+<p align="center">
+  <img src=".github/assets/consulting-workflows-mark.svg" alt="Consulting Workflows mark" width="96">
+</p>
 
-Reusable cross-tool skills for consulting-grade evidence intake, storyline design, storyboard production, workshop write-ups, and document assembly.
+<h1 align="center">Consulting Workflows</h1>
 
-This pack is designed for local-skill workflows and can be distributed through standard skill-pack channels such as [skills.sh](https://skills.sh).
-Skill folder shape is aligned to the [Agent Skills specification](https://agentskills.io/specification): each skill is self-contained.
+<p align="center">
+  Cross-tool agent skills for evidence intake, storyline design, storyboard production, workshop write-ups, and document assembly.
+</p>
 
-## Repository layout
+<p align="center">
+  <a href="https://github.com/fenrick/consulting-workflows/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/fenrick/consulting-workflows?display_name=tag&sort=semver"></a>
+  <a href="https://github.com/fenrick/consulting-workflows/actions/workflows/ci.yml"><img alt="Quality checks" src="https://img.shields.io/github/actions/workflow/status/fenrick/consulting-workflows/ci.yml?branch=main&label=quality"></a>
+  <a href="https://github.com/fenrick/consulting-workflows/actions/workflows/security-scan.yml"><img alt="Security scans" src="https://img.shields.io/github/actions/workflow/status/fenrick/consulting-workflows/security-scan.yml?branch=main&label=security"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/fenrick/consulting-workflows"></a>
+  <a href="https://agentskills.io/specification"><img alt="Agent Skills specification" src="https://img.shields.io/badge/spec-agentskills.io-0b7285"></a>
+</p>
 
-- `skills/`: installable skills (`SKILL.md` + supporting assets/scripts)
-- `scripts/`: portfolio validation and test harness scripts
-- `tests/`: fixtures used by the end-to-end checks
+`consulting-workflows` is a distribution repository for self-contained skills that can be used across Codex, Claude Code, and other runtimes that consume local skill folders or packaged skill archives. The pack is aligned to the [Agent Skills specification](https://agentskills.io/specification) and is designed for consulting-grade work rather than generic prompt snippets.
 
-## Included skills
+## What This Repo Contains
 
-- `consulting-workflow-orchestrator`
-- `input-evidence-cataloger`
-- `evidence-consistency-auditor`
-- `brief-storyline-architect`
-- `report-storyboard-builder`
-- `presentation-storyboard-builder`
-- `workshop-writeup-composer`
-- `document-writer`
+| Skill | Purpose |
+| --- | --- |
+| `consulting-workflow-orchestrator` | Runs a structured multi-skill workflow from intake through final deliverable. |
+| `input-evidence-cataloger` | Catalogs source material, maps document sets, and records factual observations from inputs. |
+| `evidence-consistency-auditor` | Checks claims, gaps, contradictions, and evidence traceability across working materials. |
+| `brief-storyline-architect` | Turns a brief and evidence base into a consulting-style storyline and narrative structure. |
+| `report-storyboard-builder` | Converts a storyline into a written-report skeleton and section file plan. |
+| `presentation-storyboard-builder` | Converts a storyline into a presentation-ready slide sequence and narrative spine. |
+| `workshop-writeup-composer` | Produces formal workshop outputs from transcripts and supporting material. |
+| `document-writer` | Builds substantial final documents with tracked working materials, citations, and document export tooling. |
 
-## Quality checks
+## Download Options
+
+- Download the full pack from [latest release](https://github.com/fenrick/consulting-workflows/releases/latest) if your runtime supports multiple skills in one archive.
+- Download a single `<skill-name>-vX.Y.Z.zip` asset if your runtime expects one skill per archive.
+- Use the collection asset `consulting-workflows-vX.Y.Z.zip` if you want the whole set in one shot.
+
+Single-skill archives are published because some runtimes only accept one skill per ZIP. The release process publishes both formats on every tagged release.
+
+## Quick Start
+
+1. Download the latest collection ZIP or a single-skill ZIP from the releases page.
+2. Unpack the archive into your runtime's local skills directory.
+3. For Codex-style runtimes, place unpacked folders under your configured skills home such as `$CODEX_HOME/skills`.
+4. For Claude-style runtimes, place unpacked folders into the runtime's local skills directory.
+
+## Repository Layout
+
+- `skills/`: installable skills (`SKILL.md` plus supporting assets, scripts, and references)
+- `scripts/`: validation, packaging, and portfolio test harness scripts
+- `tests/`: fixtures used by end-to-end checks
+
+## Quality Checks
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -30,7 +60,7 @@ python3 scripts/validate_skill_portfolio.py
 python3 scripts/run_portfolio_tests.py
 ```
 
-## Security scans
+## Security Scans
 
 Run locally:
 
@@ -54,38 +84,33 @@ These scans do not require an LLM API key.
 
 ## Packaging
 
-Build a distributable archive:
+Build the collection ZIP and one ZIP per skill:
 
 ```bash
 python3 scripts/package_skill_pack.py
 ```
 
-Default output:
-
-- `dist/consulting-workflows.zip`
-- `dist/<skill-name>.zip` for each skill under `skills/`
-- collection archive contains all skill folders only (no parent docs required by host runtimes)
-
-Versioned build example:
+Build versioned artifacts:
 
 ```bash
 python3 scripts/package_skill_pack.py --version 1.2.3
 ```
 
-This writes `dist/consulting-workflows-v1.2.3.zip` plus one `dist/<skill-name>-v1.2.3.zip` per skill.
+Default outputs:
 
-## Install matrix
+- `dist/consulting-workflows.zip`
+- `dist/<skill-name>.zip` for each skill under `skills/`
 
-- Codex-style runtimes:
-  - copy unpacked skill folders under your configured skills home (for example `$CODEX_HOME/skills`)
-- Claude-style local skills:
-  - copy unpacked skill folders into the runtime's local skills directory
-- Generic local runners:
-  - keep repo layout intact (`skills/`, `references/`, `scripts/`, `tests/`) and run quality checks before use
+Versioned outputs:
 
-## Versioning
+- `dist/consulting-workflows-vX.Y.Z.zip`
+- `dist/<skill-name>-vX.Y.Z.zip` for each skill under `skills/`
+
+Use `--include-repo-meta` only for internal sharing. Host runtimes generally only need the skill folders.
+
+## Release Model
 
 - Releases are automated by `semantic-release` on pushes to `main`.
-- Commit messages must follow Conventional Commits (`feat:`, `fix:`, `chore:`, etc.).
+- Commit messages must follow Conventional Commits such as `feat:`, `fix:`, and `chore:`.
 - `CHANGELOG.md` and GitHub Releases are updated automatically when a release is cut.
-- Release assets include `consulting-workflows-vX.Y.Z.zip` and one `<skill-name>-vX.Y.Z.zip` per skill.
+- Each release publishes the collection archive and a single-skill archive for every packaged skill.

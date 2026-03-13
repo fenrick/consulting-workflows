@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Consulting Workflows mark</title>
+  <desc id="desc">A structured mark showing connected report, presentation, and workflow artifacts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#E8F3F2"/>
+      <stop offset="100%" stop-color="#F7F4EA"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#bg)"/>
+  <path d="M64 28v18" fill="none" stroke="#16324F" stroke-linecap="round" stroke-width="6"/>
+  <path d="M64 46 38 62" fill="none" stroke="#16324F" stroke-linecap="round" stroke-width="6"/>
+  <path d="M64 46 90 62" fill="none" stroke="#16324F" stroke-linecap="round" stroke-width="6"/>
+  <circle cx="64" cy="24" r="10" fill="#16324F"/>
+  <rect x="22" y="58" width="32" height="42" rx="8" fill="#2FAEA1"/>
+  <rect x="74" y="58" width="32" height="42" rx="8" fill="#F2B134"/>
+  <rect x="46" y="76" width="36" height="24" rx="8" fill="#2D6A9F"/>
+  <path d="M30 70h16M30 78h16M30 86h12" fill="none" stroke="#F7FBFC" stroke-linecap="round" stroke-width="4"/>
+  <path d="M82 72h16M82 80h10M82 88h14" fill="none" stroke="#FFF8E7" stroke-linecap="round" stroke-width="4"/>
+  <path d="M54 88h20M54 96h14" fill="none" stroke="#F3F8FC" stroke-linecap="round" stroke-width="4"/>
+</svg>
