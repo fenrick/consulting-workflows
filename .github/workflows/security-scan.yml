@@ -26,14 +26,15 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pip-audit pipx
           pipx install "semgrep==1.155.0"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          PIPX_BIN_DIR="$(python -m pipx environment --value PIPX_BIN_DIR)"
+          echo "$PIPX_BIN_DIR" >> "$GITHUB_PATH"
           GITLEAKS_VERSION="8.24.2"
           curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" -o /tmp/gitleaks.tgz
           tar -xzf /tmp/gitleaks.tgz -C /tmp
           sudo mv /tmp/gitleaks /usr/local/bin/gitleaks
           gitleaks version
           pip-audit --version
-          "$HOME/.local/bin/semgrep" --version
+          "$PIPX_BIN_DIR/semgrep" --version
 
       - name: Run security scans
         run: ./scripts/run_security_scans.sh
