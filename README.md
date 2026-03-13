@@ -63,7 +63,16 @@ python3 scripts/package_skill_pack.py
 Default output:
 
 - `dist/consulting-workflows.zip`
-- archive contains skill folders only (no parent docs required by host runtimes)
+- `dist/<skill-name>.zip` for each skill under `skills/`
+- collection archive contains all skill folders only (no parent docs required by host runtimes)
+
+Versioned build example:
+
+```bash
+python3 scripts/package_skill_pack.py --version 1.2.3
+```
+
+This writes `dist/consulting-workflows-v1.2.3.zip` plus one `dist/<skill-name>-v1.2.3.zip` per skill.
 
 ## Install matrix
 
@@ -79,4 +88,4 @@ Default output:
 - Releases are automated by `semantic-release` on pushes to `main`.
 - Commit messages must follow Conventional Commits (`feat:`, `fix:`, `chore:`, etc.).
 - `CHANGELOG.md` and GitHub Releases are updated automatically when a release is cut.
-- Release assets are published as `dist/consulting-workflows-vX.Y.Z.zip`.
+- Release assets include `consulting-workflows-vX.Y.Z.zip` and one `<skill-name>-vX.Y.Z.zip` per skill.

@@ -230,24 +230,36 @@ def test_skill_self_containment() -> None:
 
 def test_packaging_smoke() -> None:
     with tempfile.TemporaryDirectory() as tmp:
-        output_base = Path(tmp) / "package-out" / "skill-pack"
+        output_dir = Path(tmp) / "package-out"
+        output_base = output_dir / "skill-pack"
+        version = "9.9.9"
         result = run(
             [
                 sys.executable,
                 str(ROOT / "scripts" / "package_skill_pack.py"),
                 "--output",
                 str(output_base),
+                "--version",
+                version,
             ],
             cwd=ROOT,
         )
         assert_true(result.returncode == 0, f"package_skill_pack failed:\n{result.stderr}{result.stdout}")
-        archive = Path(f"{output_base}.zip")
-        assert_true(archive.exists(), "package_skill_pack did not create zip archive")
-        with zipfile.ZipFile(archive) as zf:
+        collection_archive = output_dir / f"skill-pack-v{version}.zip"
+        assert_true(collection_archive.exists(), "package_skill_pack did not create collection zip archive")
+        with zipfile.ZipFile(collection_archive) as zf:
             names = set(zf.namelist())
         for skill_name in EXPECTED_SKILLS:
-            prefix = f"consulting-workflows/{skill_name}/"
+            prefix = f"skill-pack/{skill_name}/"
             assert_true(any(name.startswith(prefix) for name in names), f"archive missing {skill_name}/")
+            skill_archive = output_dir / f"{skill_name}-v{version}.zip"
+            assert_true(skill_archive.exists(), f"missing skill archive: {skill_archive.name}")
+            with zipfile.ZipFile(skill_archive) as zf:
+                skill_names = set(zf.namelist())
+            assert_true(
+                f"{skill_name}/SKILL.md" in skill_names,
+                f"skill archive missing {skill_name}/SKILL.md",
+            )
 
 
 def main() -> int:

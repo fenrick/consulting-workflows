@@ -45,5 +45,10 @@ Build a distributable archive:
 python3 scripts/package_skill_pack.py
 ```
 
-By default the package contains only self-contained skill folders at archive root.
+By default this creates:
+
+- `dist/consulting-workflows.zip`
+- `dist/<skill-name>.zip` for each skill under `skills/`
+
+Add `--version X.Y.Z` to emit versioned filenames for the collection and per-skill archives.
 Use `--include-repo-meta` only for internal sharing.
