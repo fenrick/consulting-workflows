@@ -25,3 +25,7 @@ This map shows where intake outputs should live so that later stages can reuse t
 3. Extract facts into the review notebook.
 4. Record open questions.
 5. Hand off to audit or storyline work.
+
+## Handoff note
+
+The source register and document map are the primary intake handoff. Later stages should not need to rebuild them.

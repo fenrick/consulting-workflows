@@ -25,3 +25,7 @@ Use it to avoid scattering storyline state across chat, scratch files, or downst
 2. Build the storyline in `tracking/storyline-architecture.md`.
 3. Log proof gaps and decisions as they arise.
 4. Validate before handing off to storyboard or document work.
+
+## Handoff note
+
+The storyline file is the primary handoff artifact. Open questions and decisions travel with it.

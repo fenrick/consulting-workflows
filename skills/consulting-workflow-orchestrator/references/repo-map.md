@@ -22,3 +22,7 @@ This map shows where workflow control state should live so that orchestration su
 2. Set the pipeline path.
 3. Advance stages only through written gates.
 4. Run backward validation before closure.
+
+## Handoff note
+
+The next operator should be able to infer the current workflow state from the runbook and status board alone.

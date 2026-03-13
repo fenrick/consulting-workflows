@@ -24,3 +24,7 @@ This map shows where the reconstructed workshop record should live so traceabili
 2. Build the evidence map.
 3. Draft the write-up.
 4. Validate decisions and actions.
+
+## Handoff note
+
+The write-up and evidence map must travel together. Without both, downstream work loses traceability.

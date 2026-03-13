@@ -23,3 +23,7 @@ This map shows where report structure planning should live before detailed prose
 2. Build the section storyboard.
 3. Produce the section file plan.
 4. Hand off to document drafting.
+
+## Handoff note
+
+The storyboard and file plan should give a writer enough structure to start drafting without reconstructing the report logic.

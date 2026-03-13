@@ -23,3 +23,7 @@ This map shows where storyboard planning should live so the narrative sequence d
 2. Build the slide map and storyboard.
 3. Remove weak or duplicate slides.
 4. Handoff for deck production.
+
+## Handoff note
+
+The storyboard and slide map should be enough for deck production to start without guessing the message sequence.

@@ -1,8 +1,10 @@
 # Bundle Map for the Document Writer Skill
 
-This is the default layout the bundled scripts expect.
+## Purpose
 
-If the target repo uses different directories, adapt the paths once and keep them consistent.
+This map shows where canonical document content, media, bibliography, tracking files, and packaging outputs should live.
+
+Use it to keep authoring state in predictable locations and stop the delivery tooling from becoming the hidden source of truth.
 
 ## Main working surfaces
 
@@ -24,8 +26,7 @@ If the target repo uses different directories, adapt the paths once and keep the
 - `scripts/scaffold_document.py`: creates the baseline title block, front-end section files, and tracking files
 - `scripts/package_skill.py`: packages the entire skill as a shareable zip
 
-Run the first two from the target project root unless explicit paths are provided.
-Run Mermaid rendering from the target project root as well when diagram assets are part of the document flow.
+Run these from the target project root unless explicit paths are provided.
 
 ## Controls
 
@@ -59,9 +60,6 @@ Mirrored bundle references:
 7. Export the packaged document if needed.
 8. Run the validation and prose passes.
 
-## Portability notes
+## Handoff note
 
-- `SKILL.md` is the portable contract.
-- `agents/openai.yaml` is optional adapter metadata for hosts that support it.
-- The archive created by `scripts/package_skill.py` is the clean handoff unit for other services or coworkers.
-- The bundled scripts should consume project markdown and tracking files, not become the place where the writing lives.
+The packaged output should travel with the working markdown, tracking files, bibliography, and media assets. The bundle is not complete if only the final document survives.

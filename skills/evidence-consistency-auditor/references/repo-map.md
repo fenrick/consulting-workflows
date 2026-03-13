@@ -24,3 +24,7 @@ This map shows where the audit state should live so that contradictions, weak su
 2. Build the issue map.
 3. Write the audit report.
 4. Re-audit after upstream changes.
+
+## Handoff note
+
+The audit report is the primary handoff artifact, but open questions and risk decisions must remain attached to it.
