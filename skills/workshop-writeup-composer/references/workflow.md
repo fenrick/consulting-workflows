@@ -6,16 +6,26 @@ This workflow turns workshop transcripts and artifacts into a formal write-up th
 
 It is a reconstruction workflow, not a fiction generator.
 
-## 1. Set up the working files
+## When to use this workflow
 
-Create or refresh:
+Use it when workshop outputs need to be made reusable for later decision, reporting, or storyline work.
+
+Do not use it to infer outcomes that the workshop record does not support.
+
+## Working files
 
 - `tracking/workshop-writeup.md`
 - `tracking/workshop-evidence-map.md`
 - `tracking/open-questions.md`
 - `tracking/decision-log.md`
 
-## 2. Lock the workshop frame
+## Operating sequence
+
+### 1. Set up the working files
+
+Create or refresh the working files.
+
+### 2. Lock the workshop frame
 
 Record:
 
@@ -25,7 +35,7 @@ Record:
 - artifact sources in scope
 - any missing transcript or artifact gaps
 
-## 3. Build the write-up skeleton
+### 3. Build the write-up skeleton
 
 Start with:
 
@@ -36,7 +46,7 @@ Start with:
 5. action items
 6. unresolved issues
 
-## 4. Expand to evidence bullets
+### 4. Expand to evidence bullets
 
 For each theme, decision, or action, capture:
 
@@ -46,7 +56,7 @@ For each theme, decision, or action, capture:
 - owner or participant if known
 - unresolved ambiguity
 
-## 5. Write the workshop narrative
+### 5. Write the workshop narrative
 
 Once the bullets are stable, write short paragraphs that:
 
@@ -55,7 +65,7 @@ Once the bullets are stable, write short paragraphs that:
 - separate decisions from tentative ideas
 - keep outputs and actions tied to evidence
 
-## 6. Run the authoring loop
+## Back-iteration loop
 
 Use this cycle:
 
@@ -66,7 +76,7 @@ Use this cycle:
 5. humanise awkward machine phrasing
 6. restore neutral voice and simple language
 
-## 7. Finalise the handoff
+## Handoff and closure
 
 Before handoff:
 

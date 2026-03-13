@@ -6,16 +6,26 @@ This workflow turns a raw input set into a clean evidence inventory and factual 
 
 The output is source-bound intake, not interpretation-heavy advice.
 
-## 1. Set up the working files
+## When to use this workflow
 
-Create or refresh:
+Use it at the start of an engagement when the input corpus is not yet mapped or classified.
+
+Do not use it to write recommendations or storyline conclusions.
+
+## Working files
 
 - `tracking/source-register.md`
 - `tracking/review-notebook.md`
 - `tracking/open-questions.md`
 - `inputs/processed/document-map.md`
 
-## 2. Inventory the corpus
+## Operating sequence
+
+### 1. Set up the working files
+
+Create or refresh the working files.
+
+### 2. Inventory the corpus
 
 Map the input set before extracting facts.
 
@@ -28,7 +38,7 @@ For each file or archive, record:
 - date/version signals
 - likely relationship to other files
 
-## 3. Build the intake skeleton
+### 3. Build the intake skeleton
 
 Start with the minimum structure:
 
@@ -37,7 +47,7 @@ Start with the minimum structure:
 3. review notebook placeholders for extracted facts
 4. open questions for missing provenance or unreadable files
 
-## 4. Expand to factual bullets
+### 4. Expand to factual bullets
 
 For each meaningful source, capture bullets for:
 
@@ -46,20 +56,16 @@ For each meaningful source, capture bullets for:
 - what other files it appears to replace or support
 - what remains unknown
 
-Do not mix observations with recommendations.
-
-## 5. Write the intake narrative
+### 5. Write the intake narrative
 
 Once the inventory is stable, write short prose where needed to explain:
 
 - major provenance patterns
 - supersession chains
-- archive/folder structure
+- archive or folder structure
 - material contradictions or metadata gaps
 
-The narrative is there to make the inventory usable, not to retell the whole corpus.
-
-## 6. Run the intake loop
+## Back-iteration loop
 
 Use this cycle:
 
@@ -70,7 +76,7 @@ Use this cycle:
 5. humanise awkward machine phrasing
 6. restore neutral voice and simple language
 
-## 7. Finalise the handoff
+## Handoff and closure
 
 Before handoff:
 

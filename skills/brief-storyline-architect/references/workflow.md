@@ -6,17 +6,27 @@ This workflow turns a brief plus evidence base into a storyline that can survive
 
 The output is not prose decoration. It is the governing question, answer, support logic, and proof gaps that downstream writing and deck work will inherit.
 
-## 1. Set up the working files
+## When to use this workflow
 
-Before shaping the story, create or refresh:
+Use it when the task is to define or repair the argument structure before full drafting starts.
+
+Do not use it as a substitute for report prose or slide production.
+
+## Working files
 
 - `tracking/storyline-architecture.md`
 - `tracking/open-questions.md`
 - `tracking/decision-log.md`
 
-If the repo already has these files, update them instead of creating duplicates.
+## Operating sequence
 
-## 2. Lock the decision frame
+### 1. Set up the working files
+
+Before shaping the story, create or refresh the working files.
+
+If the repo already has them, update them instead of creating duplicates.
+
+### 2. Lock the decision frame
 
 Record, in plain language:
 
@@ -29,7 +39,7 @@ Record, in plain language:
 
 If the decision frame is fuzzy, do not hide it with clever wording. Log the ambiguity.
 
-## 3. Build the storyline skeleton
+### 3. Build the storyline skeleton
 
 Start with the minimum shape:
 
@@ -40,7 +50,7 @@ Start with the minimum shape:
 
 This is the skeleton. Do not jump to polished prose yet.
 
-## 4. Expand to bullet support logic
+### 4. Expand to bullet support logic
 
 For each pillar, add bullets for:
 
@@ -50,9 +60,7 @@ For each pillar, add bullets for:
 - the likely objection
 - the implication if the claim holds
 
-At this stage, missing support is normal. Hidden missing support is not.
-
-## 5. Harden into reviewable prose
+### 5. Harden into reviewable prose
 
 Once the bullets hold together, write short paragraph-level logic that:
 
@@ -61,9 +69,7 @@ Once the bullets hold together, write short paragraph-level logic that:
 - explains the implication
 - distinguishes known, inferred, and unknown material
 
-Keep this tight. The point is testable logic, not rhetorical flourish.
-
-## 6. Run the authoring loop
+## Back-iteration loop
 
 For every material revision, use this cycle:
 
@@ -76,20 +82,7 @@ For every material revision, use this cycle:
 
 If the narrative gets cleaner but the proof gets weaker, revert and fix the proof.
 
-## 7. Run the challenge pass
-
-Check every pillar for:
-
-- overlap with another pillar
-- weak proof
-- buried assumptions
-- unsupported causality
-- a missing counterpoint or objection
-- a claim that belongs in a storyboard or report, not the storyline
-
-Collapse duplicates. Split overloaded pillars.
-
-## 8. Finalise the handoff
+## Handoff and closure
 
 Before handoff:
 

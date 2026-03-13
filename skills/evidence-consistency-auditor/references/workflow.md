@@ -6,29 +6,29 @@ This workflow tests whether claims across working materials can survive factual 
 
 It is an audit pass, not a writing pass.
 
-## 1. Set up the audit files
+## When to use this workflow
 
-Create or refresh:
+Use it after intake and before major drafting, or whenever upstream artifacts change enough to risk contradiction drift.
+
+Do not use it as a substitute for storyline or report writing.
+
+## Working files
 
 - `tracking/evidence-consistency-report.md`
 - `tracking/open-questions.md`
 - `tracking/decision-log.md`
 
-## 2. Define the audit scope
+## Operating sequence
 
-List the claim-bearing artifacts in scope, such as:
+### 1. Set up the audit files
 
-- briefs
-- source registers
-- review notebooks
-- storyline files
-- storyboards
-- draft sections
-- workshop outputs
+Create or refresh the working files.
 
-State the comparison boundary clearly so the audit does not drift into random file review.
+### 2. Define the audit scope
 
-## 3. Build the contradiction skeleton
+List the claim-bearing artifacts in scope and state the comparison boundary clearly.
+
+### 3. Build the contradiction skeleton
 
 Start with a table of:
 
@@ -39,9 +39,7 @@ Start with a table of:
 - severity
 - current status
 
-This is the audit skeleton. Do not start resolving issues before the issue map exists.
-
-## 4. Expand the evidence bullets
+### 4. Expand the evidence bullets
 
 For each issue, capture:
 
@@ -51,7 +49,7 @@ For each issue, capture:
 - what needs to change
 - who owns the next step
 
-## 5. Write the audit narrative
+### 5. Write the audit narrative
 
 Once the issue table is stable, write short prose that explains:
 
@@ -60,9 +58,7 @@ Once the issue table is stable, write short prose that explains:
 - the most important supersession problems
 - what must be fixed before drafting or release
 
-Keep the prose factual. This is not the place for broad recommendations.
-
-## 6. Run the re-audit loop
+## Back-iteration loop
 
 Use this cycle for each material revision:
 
@@ -73,7 +69,7 @@ Use this cycle for each material revision:
 5. humanise awkward machine phrasing
 6. restore neutral voice and simple language
 
-## 7. Finalise the audit
+## Handoff and closure
 
 Before handoff:
 

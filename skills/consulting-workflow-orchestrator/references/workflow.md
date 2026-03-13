@@ -6,18 +6,26 @@ This workflow coordinates the full consulting skill chain without letting stages
 
 The orchestrator owns sequence, gate enforcement, blocker visibility, and back-iteration.
 
-## 1. Initialise the run
+## When to use this workflow
 
-Create or refresh:
+Use it when the job spans multiple skills and the risk is loss of control between stages.
+
+Do not use it for one-off isolated skill runs that do not require stage gating.
+
+## Working files
 
 - `tracking/workflow-runbook.md`
 - `tracking/workflow-status.md`
 - `tracking/open-questions.md`
 - `tracking/decision-log.md`
 
-Record the engagement objective, active skill path, and known blockers before the first stage starts.
+## Operating sequence
 
-## 2. Lock the pipeline path
+### 1. Initialise the run
+
+Create or refresh the working files and record the engagement objective, active skill path, and known blockers.
+
+### 2. Lock the pipeline path
 
 Choose the stage path explicitly.
 
@@ -37,7 +45,7 @@ Variant path for workshop-led work:
 3. storyline and storyboard stages as needed
 4. `document-writer`
 
-## 3. Run each stage with a gate
+### 3. Run each stage with a gate
 
 Before advancing a stage, confirm:
 
@@ -49,7 +57,7 @@ Before advancing a stage, confirm:
 
 If any of these are false, the stage is `blocked`.
 
-## 4. Keep the runbook current
+### 4. Keep the runbook current
 
 For each stage, maintain:
 
@@ -61,9 +69,7 @@ For each stage, maintain:
 - owner
 - last validation result
 
-A stale runbook is the fast path to phantom progress.
-
-## 5. Run the backward pass
+## Back-iteration loop
 
 When the forward path is complete, run the back-iteration loop:
 
@@ -73,7 +79,7 @@ When the forward path is complete, run the back-iteration loop:
 4. repair downstream outputs in order
 5. update runbook and status files
 
-## 6. Close the run
+## Handoff and closure
 
 The workflow closes only when:
 

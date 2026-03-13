@@ -6,14 +6,24 @@ This workflow turns a validated storyline into a report structure that writers c
 
 The output is section logic, proof obligations, exclusions, and drafting order.
 
-## 1. Set up the working files
+## When to use this workflow
 
-Create or refresh:
+Use it after the storyline is stable and before detailed prose drafting starts.
+
+Do not use it as a substitute for final report writing.
+
+## Working files
 
 - `tracking/report-storyboard.md`
 - `tracking/open-questions.md`
 
-## 2. Lock the report objective
+## Operating sequence
+
+### 1. Set up the working files
+
+Create or refresh the working files.
+
+### 2. Lock the report objective
 
 Record:
 
@@ -23,7 +33,7 @@ Record:
 - what the report is not trying to do
 - any packaging or delivery constraints
 
-## 3. Build the section skeleton
+### 3. Build the section skeleton
 
 Start with:
 
@@ -33,7 +43,7 @@ Start with:
 
 Then define one clear purpose per section.
 
-## 4. Expand to section bullets
+### 4. Expand to section bullets
 
 For each section, capture:
 
@@ -46,7 +56,7 @@ For each section, capture:
 - exclusions
 - dependencies
 
-## 5. Write the storyboard notes
+### 5. Write the storyboard notes
 
 Once the section bullets hold together, add short prose notes where needed to explain:
 
@@ -55,7 +65,7 @@ Once the section bullets hold together, add short prose notes where needed to ex
 - why sections are separated
 - where evidence is currently thin
 
-## 6. Run the authoring loop
+## Back-iteration loop
 
 Use this cycle:
 
@@ -66,7 +76,7 @@ Use this cycle:
 5. humanise awkward machine phrasing
 6. restore neutral voice and simple language
 
-## 7. Finalise the handoff
+## Handoff and closure
 
 Before handoff:
 
