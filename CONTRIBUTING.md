@@ -28,9 +28,12 @@ python3 scripts/run_portfolio_tests.py
 
 ## Versioning
 
-- Use semantic versioning tags (`vMAJOR.MINOR.PATCH`).
-- Update `CHANGELOG.md` in the same PR as the change.
-- For breaking contract changes, increment MAJOR.
+- Releases are managed by semantic-release from Conventional Commit messages.
+- Use Conventional Commit format for all merges to `main`:
+  - `feat:` for minor releases
+  - `fix:` for patch releases
+  - `feat!:` or `BREAKING CHANGE:` for major releases
+- Do not manually edit `CHANGELOG.md` for release entries.
 
 ## PR expectations
 

@@ -15,6 +15,7 @@ inputs/
 report-body/
 
 .venv
+node_modules/
 
 # Keep CI fixtures tracked even if a global ignore rule excludes tests/
 !tests/

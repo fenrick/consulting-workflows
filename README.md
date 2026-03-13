@@ -76,6 +76,7 @@ Default output:
 
 ## Versioning
 
-- Semantic version tags: `vMAJOR.MINOR.PATCH`
-- See [`CHANGELOG.md`](CHANGELOG.md)
-- Tagging a release (`git tag vX.Y.Z && git push origin vX.Y.Z`) triggers the release workflow and publishes `dist/consulting-workflows.zip`.
+- Releases are automated by `semantic-release` on pushes to `main`.
+- Commit messages must follow Conventional Commits (`feat:`, `fix:`, `chore:`, etc.).
+- `CHANGELOG.md` and GitHub Releases are updated automatically when a release is cut.
+- Release assets are published as `dist/consulting-workflows-vX.Y.Z.zip`.

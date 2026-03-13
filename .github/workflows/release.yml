@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -14,11 +14,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
       - name: Install system dependencies
         run: |
@@ -33,16 +40,10 @@ jobs:
           python3 scripts/validate_skill_portfolio.py
           python3 scripts/run_portfolio_tests.py
 
-      - name: Build release package
-        run: python3 scripts/package_skill_pack.py
+      - name: Install semantic-release
+        run: npm install --no-fund --no-audit
 
-      - name: Validate changelog contains release tag
-        run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          grep -q "^## \\[${VERSION}\\]" CHANGELOG.md
-
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist/consulting-workflows.zip
-          generate_release_notes: true
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
