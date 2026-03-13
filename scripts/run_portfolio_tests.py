@@ -212,20 +212,41 @@ def test_skill_self_containment() -> None:
         skill_dir = path.parent
         references_dir = skill_dir / "references"
         assert_true(references_dir.exists(), f"{skill_dir.name}: missing references/")
-        assert_true(
-            (references_dir / "quality-standard.md").exists(),
-            f"{skill_dir.name}: missing references/quality-standard.md",
-        )
-        assert_true(
-            (references_dir / "workflow.md").exists(),
-            f"{skill_dir.name}: missing references/workflow.md",
-        )
+        for reference_name in (
+            "workflow.md",
+            "quality-standard.md",
+            "validation-checklist.md",
+            "term-sheet.md",
+            "repo-map.md",
+            "tracking-readme.md",
+        ):
+            assert_true(
+                (references_dir / reference_name).exists(),
+                f"{skill_dir.name}: missing references/{reference_name}",
+            )
         if skill_dir.name == "document-writer":
             continue
         templates = skill_dir / "assets" / "templates"
         assert_true(templates.exists(), f"{skill_dir.name}: missing assets/templates/")
         template_files = list(templates.glob("*.md"))
         assert_true(template_files, f"{skill_dir.name}: no template files under assets/templates/")
+
+
+def test_reference_docs_are_discoverable_from_skill_contract() -> None:
+    for path in find_skill_files():
+        text = path.read_text(encoding="utf-8")
+        for reference_name in (
+            "references/workflow.md",
+            "references/quality-standard.md",
+            "references/validation-checklist.md",
+            "references/term-sheet.md",
+            "references/repo-map.md",
+            "references/tracking-readme.md",
+        ):
+            assert_true(
+                reference_name in text,
+                f"{path.parent.name}: missing `{reference_name}` in SKILL.md",
+            )
 
 
 def test_packaging_smoke() -> None:

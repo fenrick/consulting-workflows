@@ -68,6 +68,15 @@ REQUIRED_HEADINGS = {
     ],
 }
 
+REQUIRED_REFERENCE_FILES = {
+    "workflow.md",
+    "quality-standard.md",
+    "validation-checklist.md",
+    "term-sheet.md",
+    "repo-map.md",
+    "tracking-readme.md",
+}
+
 MAX_SKILL_LINES = 220
 MAX_SKILL_TOKENS_APPROX = 3500
 
@@ -175,6 +184,13 @@ def main() -> int:
             req_file = file_path.parent / "requirements.txt"
             if not req_file.exists():
                 errors.append(f"{file_path.parent}: missing requirements.txt for python scripts")
+
+        references_dir = file_path.parent / "references"
+        missing_reference_files = sorted(
+            ref for ref in REQUIRED_REFERENCE_FILES if not (references_dir / ref).exists()
+        )
+        for ref in missing_reference_files:
+            errors.append(f"{file_path.parent}: missing references/{ref}")
 
         # validate optional openai adapter metadata if present.
         openai_yaml = file_path.parent / "agents" / "openai.yaml"

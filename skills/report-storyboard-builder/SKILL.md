@@ -9,11 +9,17 @@ Use this skill to create the written report skeleton before detailed prose.
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/report-storyboard-template.md`
-- `assets/templates/section-file-plan-template.md`
-- `assets/templates/open-questions-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/report-storyboard-template.md`
+8. `assets/templates/section-file-plan-template.md`
+9. `assets/templates/open-questions-template.md`
 
 ## Inputs
 
@@ -41,6 +47,7 @@ Apply `references/quality-standard.md` before finalizing outputs.
 - keep section logic in `tracking/report-storyboard.md`
 - keep unresolved evidence gaps in `tracking/open-questions.md`
 - keep assumptions explicit in section-level notes
+- build the artifact through section skeleton, section bullets, short notes, and flow passes
 
 ## Back-iteration loop
 

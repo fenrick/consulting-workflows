@@ -9,12 +9,18 @@ Use this skill for intake and initial content discovery before storyline or draf
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/source-register-template.md`
-- `assets/templates/review-notebook-template.md`
-- `assets/templates/open-questions-template.md`
-- `assets/templates/document-map-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/source-register-template.md`
+8. `assets/templates/review-notebook-template.md`
+9. `assets/templates/open-questions-template.md`
+10. `assets/templates/document-map-template.md`
 
 ## Core outcome
 
@@ -43,6 +49,7 @@ Apply `references/quality-standard.md` before finalizing outputs.
 - keep extracted statements in `tracking/review-notebook.md`
 - keep provenance and version metadata in `tracking/source-register.md`
 - keep uncertainties in `tracking/open-questions.md`
+- build the intake from inventory skeleton to factual bullets to short prose summary
 
 ## Back-iteration loop
 
