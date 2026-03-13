@@ -20,3 +20,9 @@ Use this sheet to keep workflow control language stable across the runbook, stat
 - Use `ready` only when validation passed.
 - Prefer `handoff` over `transition` for stage movement.
 - Do not invent softer synonyms for blockers; they hide risk.
+
+## Drift-control rules
+
+- Use the same status vocabulary in the runbook and the status board.
+- If a stage is reopened, keep the same stage name rather than creating shadow labels.
+- Do not use conversational shorthand in place of formal gate language.

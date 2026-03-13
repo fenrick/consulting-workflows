@@ -19,3 +19,9 @@ Use this sheet to keep audit language precise. Loose terminology makes contradic
 - Prefer `weak support` for under-evidenced claims.
 - Use `residual risk` when a problem remains by decision, not accident.
 - Keep severity and confidence separate in the report.
+
+## Drift-control rules
+
+- Do not let the same issue move between `contradiction` and `weak support` without recording why.
+- Keep issue-status labels stable from one audit pass to the next.
+- Prefer precise severity language over vague labels such as `concerning` or `material` unless defined.

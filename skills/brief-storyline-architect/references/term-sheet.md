@@ -22,3 +22,9 @@ Stable terms reduce rework. They stop the artifact from quietly changing meaning
 - Prefer `proof gap` over `loose end` or `TBD`.
 - Use `top-level answer` consistently in headings, notes, and review comments.
 - If a term must change, change it everywhere in the live artifact, not only in one section.
+
+## Drift-control rules
+
+- Do not let one pillar use different labels for the same concept than another pillar.
+- Prefer repetition over synonym churn when the logic would otherwise become fuzzy.
+- If reviewers introduce new labels, either adopt them globally or reject them explicitly.

@@ -18,3 +18,9 @@ Use this sheet to keep reconstruction language stable while the workshop record 
 - Use `action item` only when ownership or intent is evidenced.
 - Prefer `discussion theme` over `insight` for workshop summaries.
 - Keep tentative ideas separate from actual decisions.
+
+## Drift-control rules
+
+- Use the same labels for themes, decisions, and actions across the write-up and evidence map.
+- Do not let unresolved items drift into decision language without evidence.
+- If sessions are combined, keep session-specific labels stable throughout the write-up.

@@ -19,3 +19,9 @@ Use this sheet to keep section-planning language stable while the report structu
 - Prefer `exclusion` over `out of scope` for section-level boundaries.
 - Keep `section purpose` visible in planning notes and templates.
 - Do not let section names drift between the storyboard and the file plan.
+
+## Drift-control rules
+
+- Use the same section titles in the storyboard and file plan unless there is a recorded reason to change them.
+- Keep proof-language consistent across sections so the writer can tell what evidence burden applies.
+- Do not let appendix candidates quietly become core sections without updating the storyboard logic.

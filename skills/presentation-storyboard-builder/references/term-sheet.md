@@ -19,3 +19,9 @@ Use this sheet to keep slide-planning language stable while the sequence is bein
 - Prefer `evidence payload` over `content` when discussing proof.
 - Keep `transition` explicit in notes, not implied.
 - Keep one stable title per slide while sequencing; churn wastes review time.
+
+## Drift-control rules
+
+- Do not rename the same slide concept across the slide map and the storyboard.
+- Keep sequence labels stable while evidence is being checked.
+- Prefer one persistent term for the audience ask, not a mix of `decision`, `takeaway`, and `ask`.
