@@ -12,6 +12,7 @@
   <a href="https://github.com/fenrick/consulting-workflows/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/fenrick/consulting-workflows?display_name=tag&sort=semver"></a>
   <a href="https://github.com/fenrick/consulting-workflows/actions/workflows/ci.yml"><img alt="Quality checks" src="https://img.shields.io/github/actions/workflow/status/fenrick/consulting-workflows/ci.yml?branch=main&label=quality"></a>
   <a href="https://github.com/fenrick/consulting-workflows/actions/workflows/security-scan.yml"><img alt="Security scans" src="https://img.shields.io/github/actions/workflow/status/fenrick/consulting-workflows/security-scan.yml?branch=main&label=security"></a>
+  <a href="https://github.com/fenrick/consulting-workflows/actions/workflows/pages.yml"><img alt="Pages build" src="https://img.shields.io/github/actions/workflow/status/fenrick/consulting-workflows/pages.yml?branch=main&label=pages"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/fenrick/consulting-workflows"></a>
   <a href="https://agentskills.io/specification"><img alt="Agent Skills specification" src="https://img.shields.io/badge/spec-agentskills.io-0b7285"></a>
 </p>
@@ -38,6 +39,12 @@
 - Use the collection asset `consulting-workflows-vX.Y.Z.zip` if you want the whole set in one shot.
 
 Single-skill archives are published because some runtimes only accept one skill per ZIP. The release process publishes both formats on every tagged release.
+
+## Documentation Site
+
+- The repository can publish a generated GitHub Pages site with one landing page for the pack and one page per skill.
+- The site is generated from the actual skill folders rather than maintained separately.
+- Expected Pages URL after deployment: `https://fenrick.github.io/consulting-workflows/`
 
 ## Quick Start
 
@@ -94,6 +101,12 @@ Build versioned artifacts:
 
 ```bash
 python3 scripts/package_skill_pack.py --version 1.2.3
+```
+
+Generate the GitHub Pages site locally:
+
+```bash
+python3 scripts/generate_skill_site.py --output site
 ```
 
 Default outputs:

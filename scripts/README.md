@@ -52,3 +52,9 @@ By default this creates:
 
 Add `--version X.Y.Z` to emit versioned filenames for the collection and per-skill archives.
 Use `--include-repo-meta` only for internal sharing.
+
+Generate the GitHub Pages skill site:
+
+```bash
+python3 scripts/generate_skill_site.py --output site
+```

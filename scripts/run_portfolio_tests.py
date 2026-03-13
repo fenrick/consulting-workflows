@@ -262,6 +262,28 @@ def test_packaging_smoke() -> None:
             )
 
 
+def test_site_generation_smoke() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        output_dir = Path(tmp) / "site-out"
+        result = run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "generate_skill_site.py"),
+                "--output",
+                str(output_dir),
+            ],
+            cwd=ROOT,
+        )
+        assert_true(result.returncode == 0, f"generate_skill_site failed:\n{result.stderr}{result.stdout}")
+        assert_true((output_dir / "index.html").exists(), "site generator did not create index.html")
+        assert_true((output_dir / "assets" / "style.css").exists(), "site generator did not create style.css")
+        for skill_name in EXPECTED_SKILLS:
+            page = output_dir / "skills" / skill_name / "index.html"
+            assert_true(page.exists(), f"missing generated skill page: {page}")
+            html_text = page.read_text(encoding="utf-8")
+            assert_true(skill_name in html_text, f"generated skill page missing skill name: {skill_name}")
+
+
 def main() -> int:
     tests = [
         ("structure lint", test_structure_lint),
@@ -272,6 +294,7 @@ def main() -> int:
         ("prohibited wording", test_prohibited_wording),
         ("skill self-containment", test_skill_self_containment),
         ("packaging smoke", test_packaging_smoke),
+        ("site generation smoke", test_site_generation_smoke),
         ("document-writer e2e", test_document_writer_e2e),
     ]
     failures: list[str] = []
