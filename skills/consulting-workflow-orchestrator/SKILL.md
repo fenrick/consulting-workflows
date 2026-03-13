@@ -9,10 +9,16 @@ Use this skill to run the multi-skill process end-to-end with deterministic hand
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/workflow-runbook-template.md`
-- `assets/templates/workflow-status-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/workflow-runbook-template.md`
+8. `assets/templates/workflow-status-template.md`
 
 ## Pipeline order
 
@@ -48,6 +54,7 @@ For workshop-heavy engagements:
 - keep orchestration state in `tracking/workflow-runbook.md` and `tracking/workflow-status.md`
 - enforce updates to `tracking/open-questions.md` and `tracking/decision-log.md` at each gate
 - block progression if declared outputs are missing
+- treat the runbook as the source of truth for workflow state
 
 ## Back-iteration loop
 

@@ -68,6 +68,52 @@ REQUIRED_HEADINGS = {
     ],
 }
 
+REQUIRED_REFERENCE_FILES = {
+    "workflow.md",
+    "quality-standard.md",
+    "validation-checklist.md",
+    "term-sheet.md",
+    "repo-map.md",
+    "tracking-readme.md",
+}
+
+REFERENCE_REQUIRED_HEADINGS = {
+    "workflow.md": [
+        "## Purpose",
+        "## Working files",
+        "## Back-iteration loop",
+        "## Handoff and closure",
+    ],
+    "quality-standard.md": [
+        "## Purpose",
+        "## Core standard",
+        "## Authoring standard",
+        "## Tracking standard",
+        "## Handoff standard",
+    ],
+    "validation-checklist.md": [
+        "## Purpose",
+        "## How to use this checklist",
+    ],
+    "term-sheet.md": [
+        "## Purpose",
+        "## Core terms",
+        "## Usage rules",
+        "## Drift-control rules",
+    ],
+    "repo-map.md": [
+        "## Purpose",
+        "## Main files",
+        "## Typical flow",
+        "## Handoff note",
+    ],
+    "tracking-readme.md": [
+        "## Purpose",
+        "## Template roles",
+        "## Working rule",
+    ],
+}
+
 MAX_SKILL_LINES = 220
 MAX_SKILL_TOKENS_APPROX = 3500
 
@@ -176,6 +222,21 @@ def main() -> int:
             if not req_file.exists():
                 errors.append(f"{file_path.parent}: missing requirements.txt for python scripts")
 
+        references_dir = file_path.parent / "references"
+        missing_reference_files = sorted(
+            ref for ref in REQUIRED_REFERENCE_FILES if not (references_dir / ref).exists()
+        )
+        for ref in missing_reference_files:
+            errors.append(f"{file_path.parent}: missing references/{ref}")
+        for ref_name, headings in REFERENCE_REQUIRED_HEADINGS.items():
+            ref_path = references_dir / ref_name
+            if not ref_path.exists():
+                continue
+            ref_text = ref_path.read_text(encoding="utf-8")
+            for heading in headings:
+                if heading not in ref_text:
+                    errors.append(f"{ref_path}: missing heading `{heading}`")
+
         # validate optional openai adapter metadata if present.
         openai_yaml = file_path.parent / "agents" / "openai.yaml"
         if openai_yaml.exists():
@@ -184,6 +245,8 @@ def main() -> int:
                 "interface:",
                 "display_name:",
                 "short_description:",
+                "card_description:",
+                "version:",
                 "default_prompt:",
             ):
                 if required_key not in yaml_text:

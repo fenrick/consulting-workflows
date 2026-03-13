@@ -16,7 +16,23 @@ When using the bundled scripts from a shared skill install, run them from the ta
 
 Source-reading helpers such as spreadsheet, PDF, or document-format tools may be used to inspect inputs. They do not become the authoring workflow. Their output should be notes, extracted facts, or validation results that feed back into markdown drafting.
 
-## 1. Start the document
+## Working files
+
+- `tracking/document-brief.md`
+- `tracking/source-register.md`
+- `tracking/section-status.md`
+- `tracking/decision-log.md`
+- `tracking/open-questions.md`
+- `tracking/editorial-pass.md`
+- `tracking/release-check.md`
+- `tracking/review-notebook.md`
+- `tracking/findings-workbook.md`
+- `report-body/`
+- `full/`
+
+## Operating sequence
+
+### 1. Start the document
 
 Before drafting, establish the operating frame.
 
@@ -63,7 +79,7 @@ Record:
 
 Do not carry placeholder title or subtitle text beyond the scaffolding step.
 
-## 2. Intake and classify sources
+### 2. Intake and classify sources
 
 Do not start writing until the source base is mapped.
 
@@ -93,7 +109,7 @@ Do not force later passes to rediscover important patterns from first sources if
 
 If a source helper is used here, promote what it finds into the source register and review notebook. Do not leave important observations stranded in a tool transcript or script output.
 
-## 3. Set the writing frame
+### 3. Set the writing frame
 
 Before editing the body, lock these items:
 
@@ -104,6 +120,12 @@ Before editing the body, lock these items:
 - expected finding structure
 - citation method
 
+Default citation contract:
+
+- APA v7 bibliography formatting
+- Pandoc/Writage in-text citations such as `[@key]`
+- no manual markdown footnote citations unless the user explicitly asks for them
+
 For review-style documents, the document should read as a baseline that informs later decisions, not as a disguised recommendation paper.
 
 If the audience includes non-specialists:
@@ -113,7 +135,7 @@ If the audience includes non-specialists:
 - identify the main user or stakeholder groups visible in the evidence
 - put this orientation before dense findings
 
-## 4. Build or confirm the structure
+### 4. Build or confirm the structure
 
 Check that the structure serves the story before refining sentences.
 
@@ -143,7 +165,7 @@ At section level:
 
 The number and naming of sections should follow the document, not this template. The only hard contract is ordered `NN - Title.md` files for assembly.
 
-## 5. Draft a section
+### 5. Draft a section
 
 ### Step 1: gather the inputs
 
@@ -185,11 +207,20 @@ The section close should:
 
 If the close only repeats the body text, it is too weak.
 
-## 6. Handle figures properly
+### 6. Handle figures properly
 
 Every figure must earn its place.
 
 Treat figure format as a delivery risk, not only a design choice.
+
+If the figure starts as Mermaid:
+
+- keep the editable `.mmd` source in `report-body/diagrams/` or an equivalent tracked path
+- use the bundled ELK-based neutral config unless the document has a stronger visual requirement
+- render a high-resolution PNG for embedding with `python3 scripts/render_mermaid.py`
+- expect the export path to place Mermaid figures at a controlled document width rather than stretching every figure to full page width
+- keep the SVG output if future editing is likely
+- record the render path in the editorial pass log if someone else will package the document
 
 When the output may pass through Writage or Word:
 
@@ -204,11 +235,18 @@ Before a figure:
 - say what it shows
 - say why it matters
 - translate technical or model-heavy content for non-specialist readers
+- include a caption
 
 After a figure:
 
 - connect it back to the section logic
 - avoid leaving the image to speak for itself
+
+For tables:
+
+- include a caption
+- keep headings and units explicit
+- explain the point of the table in the surrounding prose
 
 If a figure is impressive but not useful, cut it.
 
@@ -218,7 +256,7 @@ If a figure is reconstructed from code or other evidence rather than copied from
 - keep the diagram simpler than the source material
 - explain what the non-specialist reader should notice
 
-## 7. Keep terminology stable
+### 7. Keep terminology stable
 
 Use `controls/term-sheet.md`.
 
@@ -230,7 +268,7 @@ During each pass:
 
 Do not rewrite a stable term just because it has appeared twice already. That is how drift starts.
 
-## 8. Keep the comparative section in bounds
+### 8. Keep the comparative section in bounds
 
 Comparative material should:
 
@@ -247,7 +285,9 @@ It should not:
 
 Keep it selective. Judgment matters more than breadth.
 
-## 9. Run the editing passes in the right order
+## Back-iteration loop
+
+### 9. Run the editing passes in the right order
 
 Use this sequence:
 
@@ -264,15 +304,18 @@ Do not spend time polishing sentences inside a broken structure.
 For substantial work, run these passes as a loop, not a single sweep:
 
 1. skeleton draft
-2. flesh out the evidence and reasoning
-3. rewrite for flow
-4. run the natural-voice or prose-quality pass
-5. read the whole document in sequence
-6. repeat until the flow holds together cleanly
+2. bullet points
+3. paragraphs
+4. narrative flow pass
+5. humanise the awkward machine phrasing
+6. restore neutral voice and simple language
+7. run the humaniser again
+8. read the whole document in sequence
+9. repeat until the flow holds together cleanly and the latest humaniser pass makes only trivial changes
 
 The loop matters because a document that reads well section by section can still fail once read end to end.
 
-## 10. Assemble the combined draft
+### 10. Assemble the combined draft
 
 When the split sections are ready, assemble the combined output:
 
@@ -324,6 +367,7 @@ Defaults:
 - reference doc: `assets/reference.docx`
 - bibliography: assembled bibliography if present, otherwise the source bibliography
 - table of contents: generated from level 1 headings unless deliberately disabled
+- Mermaid fenced blocks with `<!-- FigureCaption: ... -->` comments are preprocessed into embedded PNG figures with styled `ImageCaption` paragraphs
 
 If Pandoc or the reference doc is missing, stop and fix the toolchain rather than improvising a less repeatable path.
 
@@ -331,7 +375,14 @@ Do not switch to direct binary-document authoring here unless the user explicitl
 
 If another export path is used, it must consume the canonical markdown draft. Do not migrate the document body into a Node, Python, or template generator just to produce the final file.
 
-## 11. References and evidence register pass
+For local-only export tuning:
+
+- it is acceptable to keep disposable comparison files under `tests/` while tuning the export path
+- treat those files as local fixtures, not portfolio assets
+- compare generated output against the local fixture and then keep only the code changes, not the fixture itself
+- do not commit ad hoc fixture documents, generated DOCX files, or borrowed reference artifacts unless they have been deliberately curated for the repo
+
+### 11. References and evidence register pass
 
 Before release:
 
@@ -339,13 +390,14 @@ Before release:
 - confirm every in-text citation resolves
 - remove orphaned bibliography entries that are no longer cited unless the section is a reviewed-source register
 - normalise titles and identifiers
+- format bibliography entries to APA v7 unless the user explicitly requested a different style
 - distinguish reviewed documents from sampled or indexed material
 - make sure comparative context is not presented as direct evidence
 - update the release checklist if one is being used
 
 Code-specific implementation evidence may still be cited directly in prose by file and line reference when that is clearer than a bibliography citation.
 
-## 12. Final voice pass
+### 12. Final voice pass
 
 Use the strongest plain-language sections as the benchmark for the weakest sections.
 
@@ -357,13 +409,20 @@ Check for:
 - advisory or strategic tone where the document should stay descriptive
 - inconsistent framing between the front end and later sections
 
-Run the `humanizer` skill as the final check. Keep the document voice; remove the machine habits.
+Run the `humanizer` skill as repeated final checks, not one token pass. Keep the document voice; remove the machine habits.
 
-## 13. Use skills deliberately
+Minimum release expectation:
+
+- run the humaniser at least twice on substantial documentation
+- review the output after each pass
+- stop only when the next pass would make trivial or no meaningful changes
+
+### 13. Use skills deliberately
 
 Use the smallest relevant skill set for the task. In environments that provide companion skills, the usual choices are:
 
 - `humanizer` for the final prose-quality pass on every substantial document change
+- `humanizer` should usually be run multiple times near release rather than once
 - `doc` when packaged document output, Writage behaviour, or layout fidelity matters after the content workflow is already in place
 - `pdf` when PDF rendering, pagination, or extraction fidelity matters
 - `slides` when building or editing editable diagrams, figures, or presentation assets
@@ -377,7 +436,7 @@ Do not let a code generator become the hidden canonical source of the document.
 
 Do not let a spreadsheet helper become the hidden planner of the document either. Source extraction is upstream of writing, not a substitute for it.
 
-## 14. Commit and branch discipline
+### 14. Commit and branch discipline
 
 When a major pass is complete:
 
@@ -392,7 +451,9 @@ When resetting the repo for a new document stream:
 - remove document-specific content deliberately
 - replace it with reusable templates rather than leaving gaps
 
-## 15. Minimum release gate
+## Handoff and closure
+
+### 15. Minimum release gate
 
 The document is not ready until:
 

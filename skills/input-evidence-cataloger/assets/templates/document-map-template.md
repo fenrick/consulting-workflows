@@ -2,12 +2,10 @@
 
 ## Input structure
 
-- Path:
-- Type:
-- Role:
+| Path | Container type | File type | Evidence role | Notes |
+|---|---|---|---|---|
 
 ## Supersession map
 
-| Current | Replaces | Rationale |
-|---|---|---|
-
+| Current item | Replaces | Evidence for replacement | Confidence |
+|---|---|---|---|

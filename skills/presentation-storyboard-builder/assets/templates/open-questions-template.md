@@ -1,5 +1,4 @@
 # Open Questions
 
-| ID | Slide | Support gap | Blocking | Next step |
-|---|---|---|---|---|
-
+| ID | Slide # | Support gap | Blocking (`yes`/`no`) | Owner | Next step |
+|---|---|---|---|---|---|

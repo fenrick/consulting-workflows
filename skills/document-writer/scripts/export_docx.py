@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -11,6 +12,14 @@ import zipfile
 from pathlib import Path
 
 from defusedxml import ElementTree as ET
+
+
+MERMAID_BLOCK_PATTERN = re.compile(
+    r"(?:<!--\s*FigureCaption:\s*(?P<caption>.+?)\s*-->\s*)?"
+    r":::mermaid\s*\n(?P<body>.*?)\n:::\s*",
+    re.DOTALL,
+)
+DEFAULT_FIGURE_WIDTH = "5.55in"
 
 
 def parse_args() -> argparse.Namespace:
@@ -144,6 +153,77 @@ def resolve_output_path(explicit: str) -> Path:
     return path.with_suffix(".docx")
 
 
+def render_mermaid_block(
+    renderer_script: Path,
+    mermaid_source: str,
+    output_dir: Path,
+    basename: str,
+    env: dict[str, str] | None = None,
+) -> Path:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    source_path = output_dir / f"{basename}.mmd"
+    source_path.write_text(mermaid_source.rstrip() + "\n", encoding="utf-8")
+    cmd = [
+        sys.executable,
+        str(renderer_script),
+        str(source_path),
+        "--output-dir",
+        str(output_dir),
+        "--basename",
+        basename,
+        "--png-only",
+    ]
+    run(cmd, env=env)
+    return output_dir / f"{basename}.png"
+
+
+def preprocess_mermaid_blocks(
+    markdown_text: str,
+    renderer_script: Path,
+    working_dir: Path,
+    env: dict[str, str] | None = None,
+) -> tuple[str, int]:
+    media_dir = working_dir / "media"
+    figure_index = 0
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal figure_index
+        figure_index += 1
+        caption = (match.group("caption") or f"Figure {figure_index}").strip()
+        body = match.group("body").strip()
+        basename = f"mermaid-figure-{figure_index:02d}"
+        image_path = render_mermaid_block(
+            renderer_script=renderer_script,
+            mermaid_source=body,
+            output_dir=media_dir,
+            basename=basename,
+            env=env,
+        )
+        rel_path = image_path.relative_to(working_dir).as_posix()
+        return f"\n![diagram]({rel_path}){{width={DEFAULT_FIGURE_WIDTH}}}\n\n{caption}\n\n"
+
+    transformed = MERMAID_BLOCK_PATTERN.sub(replace, markdown_text)
+    return transformed, figure_index
+
+
+def prepare_markdown_input(
+    input_path: Path,
+    temp_dir: Path,
+    env: dict[str, str] | None = None,
+) -> Path:
+    text = input_path.read_text(encoding="utf-8")
+    renderer_script = Path(__file__).resolve().parent / "render_mermaid.py"
+    working_input = temp_dir / input_path.name
+    transformed_text, _ = preprocess_mermaid_blocks(
+        markdown_text=text,
+        renderer_script=renderer_script,
+        working_dir=temp_dir,
+        env=env,
+    )
+    working_input.write_text(transformed_text, encoding="utf-8")
+    return working_input
+
+
 def move_toc_after_executive_summary(docx_path: Path) -> None:
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_path = Path(temp_dir)
@@ -210,6 +290,44 @@ def move_toc_after_executive_summary(docx_path: Path) -> None:
         rebuilt.replace(docx_path)
 
 
+def apply_image_caption_style(docx_path: Path, style_name: str = "ImageCaption") -> None:
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_path = Path(temp_dir)
+        with zipfile.ZipFile(docx_path) as archive:
+            archive.extractall(temp_path)
+
+        document_xml = temp_path / "word" / "document.xml"
+        tree = ET.parse(document_xml)
+        root = tree.getroot()
+
+        changed = False
+        for paragraph in root.findall(".//w:p", XML_NS):
+            text = "".join(node.text or "" for node in paragraph.findall(".//w:t", XML_NS)).strip()
+            if not text.startswith("Figure "):
+                continue
+            p_pr = paragraph.find("w:pPr", XML_NS)
+            if p_pr is None:
+                p_pr = ET.Element(f"{W}pPr")
+                paragraph.insert(0, p_pr)
+            p_style = p_pr.find("w:pStyle", XML_NS)
+            if p_style is None:
+                p_style = ET.SubElement(p_pr, f"{W}pStyle")
+            p_style.set(f"{W}val", style_name)
+            changed = True
+
+        if not changed:
+            return
+
+        tree.write(document_xml, encoding="UTF-8", xml_declaration=True)
+
+        rebuilt = docx_path.with_suffix(".tmp.docx")
+        with zipfile.ZipFile(rebuilt, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for path in sorted(temp_path.rglob("*")):
+                if path.is_file():
+                    archive.write(path, path.relative_to(temp_path))
+        rebuilt.replace(docx_path)
+
+
 def main() -> None:
     args = parse_args()
 
@@ -232,44 +350,50 @@ def main() -> None:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    resource_paths = []
-    for candidate in (
-        str(input_path.parent),
-        ".",
-        "full",
-        "full/media",
-        "report-body",
-        "report-body/media",
-    ):
-        if candidate not in resource_paths:
-            resource_paths.append(candidate)
+    with tempfile.TemporaryDirectory() as temp_dir_name:
+        temp_dir = Path(temp_dir_name)
+        prepared_input = prepare_markdown_input(input_path, temp_dir=temp_dir, env=pandoc_env)
 
-    cmd = [
-        "pandoc",
-        str(input_path),
-        "--from",
-        "markdown",
-        "--to",
-        "docx",
-        "--output",
-        str(output_path),
-        "--reference-doc",
-        str(reference_doc),
-        "--resource-path",
-        ":".join(resource_paths),
-    ]
+        resource_paths = []
+        for candidate in (
+            str(prepared_input.parent),
+            str(input_path.parent),
+            ".",
+            "full",
+            "full/media",
+            "report-body",
+            "report-body/media",
+        ):
+            if candidate not in resource_paths:
+                resource_paths.append(candidate)
 
-    if bibliography is not None:
-        cmd.extend(["--bibliography", str(bibliography)])
-        if not args.no_citeproc:
-            cmd.append("--citeproc")
+        cmd = [
+            "pandoc",
+            str(prepared_input),
+            "--from",
+            "markdown",
+            "--to",
+            "docx",
+            "--output",
+            str(output_path),
+            "--reference-doc",
+            str(reference_doc),
+            "--resource-path",
+            ":".join(resource_paths),
+        ]
 
-    if args.toc:
-        cmd.extend(["--toc", "--toc-depth", "1"])
+        if bibliography is not None:
+            cmd.extend(["--bibliography", str(bibliography)])
+            if not args.no_citeproc:
+                cmd.append("--citeproc")
 
-    run(cmd, env=pandoc_env)
+        if args.toc:
+            cmd.extend(["--toc", "--toc-depth", "1"])
+
+        run(cmd, env=pandoc_env)
     if args.toc:
         move_toc_after_executive_summary(output_path)
+    apply_image_caption_style(output_path)
     print(f"[export_docx] Wrote {output_path}")
 
 

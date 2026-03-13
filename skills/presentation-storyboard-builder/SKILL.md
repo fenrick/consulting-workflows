@@ -9,11 +9,17 @@ Use this skill to create a slide skeleton before deck production.
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/presentation-storyboard-template.md`
-- `assets/templates/slide-map-template.md`
-- `assets/templates/open-questions-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/presentation-storyboard-template.md`
+8. `assets/templates/slide-map-template.md`
+9. `assets/templates/open-questions-template.md`
 
 ## Inputs
 
@@ -41,6 +47,7 @@ Apply `references/quality-standard.md` before finalizing outputs.
 - keep slide logic in `tracking/presentation-storyboard.md`
 - keep unsupported slide claims in `tracking/open-questions.md`
 - keep narrative tradeoffs explicit in slide notes
+- build the artifact through slide skeleton, slide bullets, short notes, and flow passes
 
 ## Back-iteration loop
 

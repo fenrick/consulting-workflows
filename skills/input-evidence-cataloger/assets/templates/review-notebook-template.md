@@ -1,14 +1,11 @@
 # Review Notebook
 
-## Observations
+## Factual observations
 
-- Source:
-- Statement:
-- Confidence:
-- Rationale:
+| Source ID | Statement | Confidence | Why this matters | Unknowns / caveats |
+|---|---|---|---|---|
 
 ## Cross-source insights
 
-- Insight:
-- Supporting sources:
-
+| Insight | Supporting sources | Confidence | Open question |
+|---|---|---|---|

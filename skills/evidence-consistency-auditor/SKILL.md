@@ -9,11 +9,17 @@ Use this skill after intake and before full drafting to harden factual integrity
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/evidence-consistency-report-template.md`
-- `assets/templates/open-questions-template.md`
-- `assets/templates/decision-log-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/evidence-consistency-report-template.md`
+8. `assets/templates/open-questions-template.md`
+9. `assets/templates/decision-log-template.md`
 
 ## Inputs
 
@@ -50,6 +56,7 @@ Apply `references/quality-standard.md` before finalizing outputs.
 - keep audit findings in `tracking/evidence-consistency-report.md`
 - keep unresolved contradictions in `tracking/open-questions.md`
 - keep accepted residual risks in `tracking/decision-log.md`
+- build findings from issue skeleton to evidence bullets to short prose summary
 
 ## Back-iteration loop
 

@@ -1,5 +1,4 @@
 # Decision Log
 
-| Date | Decision | Rationale | Impact | Owner |
-|---|---|---|---|---|
-
+| Date | Decision | Options considered | Rationale | Impact on storyline | Owner |
+|---|---|---|---|---|---|

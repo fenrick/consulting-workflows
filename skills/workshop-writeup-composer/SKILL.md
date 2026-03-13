@@ -9,12 +9,18 @@ Use this skill for formal workshop reporting from explicit workshop materials.
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/workshop-writeup-template.md`
-- `assets/templates/workshop-evidence-map-template.md`
-- `assets/templates/open-questions-template.md`
-- `assets/templates/decision-log-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/workshop-writeup-template.md`
+8. `assets/templates/workshop-evidence-map-template.md`
+9. `assets/templates/open-questions-template.md`
+10. `assets/templates/decision-log-template.md`
 
 ## Inputs
 
@@ -56,6 +62,7 @@ Apply `references/quality-standard.md` before finalizing outputs.
 - keep write-up content in `tracking/workshop-writeup.md`
 - keep transcript/artifact traceability in `tracking/workshop-evidence-map.md`
 - keep unresolved workshop points in `tracking/open-questions.md`
+- build the artifact through skeleton, evidence bullets, short paragraphs, and flow passes
 
 ## Back-iteration loop
 

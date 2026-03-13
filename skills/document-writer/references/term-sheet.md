@@ -6,13 +6,14 @@ This file keeps repeated document terms stable. Use it when drafting, revising, 
 
 If a distinction matters, make it explicit. Otherwise keep the preferred term.
 
-## Default document terms
+## Core terms
 
 ### Core narrative terms
 
 - `theme`: a repeated and validated pattern observed across the evidence
 - `finding`: the section-level or grouped conclusion drawn from related evidence
 - `improvement focus`: the practical area that future work should address
+- `authoring loop`: the repeatable draft cycle of skeleton, bullet points, paragraphs, narrative flow, humanise, and neutral-language pass
 
 ### Structural and operating terms
 
@@ -29,11 +30,13 @@ If a distinction matters, make it explicit. Otherwise keep the preferred term.
 - `reporting layer`: the reporting structures, stores, extracts, and downstream reporting logic built from operational data
 - `source record`: use only when the trace back to the originating operational record matters
 
-### Decision and control terms
+### Citation and media terms
 
-- `boundaries`: where work happens, where data sits, and where changes can be made
-- `ownership`: who is accountable for a module, process, or decision area
-- `decision rights`: who can approve, reject, or direct a change
+- `Pandoc citation`: in-text citation syntax such as `[@key]` used in source markdown
+- `APA v7`: the default bibliography and reference style for packaged output unless the user explicitly chooses another style
+- `figure caption`: the caption immediately attached to an image or diagram
+- `table caption`: the caption immediately attached to a table
+- `Mermaid source`: the editable `.mmd` diagram source kept with the working draft
 
 ## Usage rules
 
@@ -42,9 +45,11 @@ If a distinction matters, make it explicit. Otherwise keep the preferred term.
 - Prefer `theme` over `issue` when the point is a repeated pattern rather than a single problem.
 - Prefer `finding` over `takeaway`, `lesson`, or `headline`.
 - Prefer `improvement focus` over `priority area` or `opportunity` unless the user explicitly wants a different label.
+- Prefer `Pandoc citation` over `footnote citation` for source markdown unless the user explicitly asks for another citation method.
 
-## Style rules for repeated concepts
+## Drift-control rules
 
 - Use the same term across headings, body text, figure captions, and summary tables.
+- Use the same citation method across the whole document.
 - If the glossary defines a term, the running text should usually match it.
 - Repetition is acceptable for technical accuracy. Synonym variety is not a virtue when it blurs the concept.

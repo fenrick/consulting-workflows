@@ -18,60 +18,106 @@ MARK_SOURCE = ROOT / ".github" / "assets" / "consulting-workflows-mark.svg"
 
 SITE_CSS = """
 :root {
-  --bg: #f6f3eb;
-  --panel: #fffdf8;
-  --panel-2: #f0f6f6;
-  --ink: #17222d;
-  --muted: #52606d;
-  --line: #d8ddd7;
-  --accent: #1f6f8b;
-  --accent-2: #2faea1;
-  --accent-3: #f2b134;
-  --shadow: 0 18px 48px rgba(23, 34, 45, 0.08);
-  --radius: 20px;
-  --radius-sm: 12px;
-  --max: 1180px;
-  --mono: "SFMono-Regular", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
-  --sans: "Segoe UI", "Aptos", "Helvetica Neue", sans-serif;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.153 0.006 107.1);
+  --card: rgba(255, 255, 255, 0.92);
+  --card-foreground: oklch(0.153 0.006 107.1);
+  --popover: rgba(255, 255, 255, 0.96);
+  --popover-foreground: oklch(0.153 0.006 107.1);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-strong: oklch(0.424 0.199 265.638);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.966 0.005 106.5);
+  --muted-foreground: oklch(0.58 0.031 107.3);
+  --border: oklch(0.93 0.007 106.5);
+  --border-strong: oklch(0.88 0.01 106.5);
+  --ring: oklch(0.737 0.021 106.9);
+  --sidebar: rgba(250, 250, 250, 0.92);
+  --sidebar-border: rgba(255, 255, 255, 0.72);
+  --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  --shadow-tight: 0 12px 24px rgba(15, 23, 42, 0.06);
+  --radius: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --max: 1220px;
+  --mono: "Geist Mono", "SFMono-Regular", ui-monospace, monospace;
+  --sans: "Geist", "Aptos", "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
 body {
   margin: 0;
   font-family: var(--sans);
-  color: var(--ink);
+  color: var(--foreground);
+  font-size: 15px;
   background:
-    radial-gradient(circle at top left, rgba(47, 174, 161, 0.14), transparent 30%),
-    radial-gradient(circle at top right, rgba(242, 177, 52, 0.16), transparent 22%),
-    linear-gradient(180deg, #fbfaf6 0%, var(--bg) 100%);
+    radial-gradient(circle at top, rgba(99, 102, 241, 0.09), transparent 32%),
+    linear-gradient(180deg, rgba(245, 247, 250, 0.9), rgba(255, 255, 255, 1));
 }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+a {
+  color: var(--primary-strong);
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+a:hover { color: var(--primary); }
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ring) 62%, transparent);
+  outline-offset: 3px;
+}
 code, pre { font-family: var(--mono); }
 code {
-  background: #eef4f5;
-  padding: 0.12rem 0.36rem;
-  border-radius: 6px;
-  font-size: 0.92em;
+  background: var(--muted);
+  padding: 0.14rem 0.4rem;
+  border-radius: calc(var(--radius) * 0.8);
+  font-size: 0.9em;
 }
 pre {
-  background: #13202b;
-  color: #eef6f7;
+  background: oklch(0.18 0.02 264);
+  color: oklch(0.96 0.01 255);
   padding: 1rem 1.1rem;
   overflow-x: auto;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 pre code { background: transparent; padding: 0; color: inherit; }
 .shell::before {
   content: "$ ";
-  color: #9fd4d1;
+  color: oklch(0.82 0.08 250);
 }
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 20;
+  padding: 0.72rem 0.95rem;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: white;
+}
+.skip-link:focus-visible { top: 1rem; }
 .site-shell {
   width: min(calc(100% - 2rem), var(--max));
   margin: 0 auto;
 }
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding: 1rem 0 0;
 }
 .topbar-inner {
@@ -80,14 +126,20 @@ pre code { background: transparent; padding: 0; color: inherit; }
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 0.7rem 0.9rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-tight);
 }
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
-  color: var(--ink);
+  color: var(--foreground);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
 }
 .brand img {
   width: 40px;
@@ -95,144 +147,194 @@ pre code { background: transparent; padding: 0; color: inherit; }
 }
 .nav {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 .nav a {
-  color: var(--muted);
-  padding: 0.5rem 0.8rem;
+  color: var(--muted-foreground);
+  padding: 0.48rem 0.72rem;
   border-radius: 999px;
+  touch-action: manipulation;
+  font-size: 0.95rem;
 }
 .nav a:hover {
-  background: rgba(31, 111, 139, 0.08);
+  background: rgba(99, 102, 241, 0.08);
   text-decoration: none;
 }
 .hero {
-  padding: 3rem 0 2rem;
+  padding: 1.35rem 0 1.25rem;
 }
 .hero-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(240, 246, 246, 0.92));
-  border: 1px solid rgba(216, 221, 215, 0.9);
-  border-radius: 28px;
-  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.18), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: calc(var(--radius-xl) + 0.25rem);
+  padding: 1.4rem;
   box-shadow: var(--shadow);
 }
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.34rem 0.6rem;
+  border-radius: 999px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.76rem;
-  color: var(--accent);
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--primary-strong);
+  background: rgba(99, 102, 241, 0.08);
   font-weight: 700;
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 1rem;
 }
 .hero h1 {
-  margin: 0.45rem 0 0.8rem;
-  font-size: clamp(2rem, 4vw, 3.6rem);
+  margin: 0.75rem 0 0.65rem;
+  font-size: clamp(2rem, 4vw, 3.35rem);
   line-height: 0.98;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.07em;
+  max-width: 13ch;
+  text-wrap: balance;
 }
 .hero p {
   margin: 0;
-  font-size: 1.08rem;
-  color: var(--muted);
-  max-width: 56rem;
+  font-size: 0.98rem;
+  color: var(--muted-foreground);
+  max-width: 40rem;
+  line-height: 1.6;
 }
 .hero-actions {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
-  margin-top: 1.4rem;
+  margin-top: 1.05rem;
 }
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.82rem 1.05rem;
+  padding: 0.72rem 0.92rem;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 600;
   border: 1px solid transparent;
+  touch-action: manipulation;
+  font-size: 0.94rem;
 }
 .button-primary {
-  color: white;
-  background: linear-gradient(135deg, var(--accent), #255d90);
+  color: var(--primary-foreground);
+  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+  box-shadow: 0 14px 28px rgba(99, 102, 241, 0.22);
 }
 .button-secondary {
-  color: var(--ink);
-  background: rgba(31, 111, 139, 0.08);
-  border-color: rgba(31, 111, 139, 0.14);
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: var(--border);
+}
+.button:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
 }
 .hero-stats {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 .stat {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(216, 221, 215, 0.85);
-  border-radius: 18px;
-  padding: 1rem 1rem 0.95rem;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--foreground);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: calc(var(--radius-lg) + 0.1rem);
+  padding: 0.85rem 0.9rem;
+  box-shadow: var(--shadow-tight);
 }
 .stat-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--muted);
+  color: var(--muted-foreground);
   margin-bottom: 0.32rem;
 }
 .stat-value {
-  font-size: 1.7rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  text-wrap: balance;
 }
 .stat-copy {
-  margin-top: 0.3rem;
-  color: var(--muted);
-  font-size: 0.95rem;
+  margin-top: 0.35rem;
+  color: var(--muted-foreground);
+  font-size: 0.88rem;
+  line-height: 1.55;
 }
 .section {
-  padding: 1.2rem 0 2.2rem;
+  padding: 0.95rem 0 1.6rem;
 }
 .section-head {
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 .section-head h2 {
   margin: 0;
-  font-size: clamp(1.4rem, 2vw, 2rem);
-  letter-spacing: -0.03em;
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  letter-spacing: -0.06em;
+  text-wrap: balance;
 }
 .section-head p {
-  margin: 0.45rem 0 0;
-  color: var(--muted);
+  margin: 0.48rem 0 0;
+  color: var(--muted-foreground);
+  max-width: 40rem;
+  line-height: 1.58;
+  font-size: 0.95rem;
 }
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 0.85rem;
 }
 .skill-card, .panel {
-  background: var(--panel);
-  border: 1px solid rgba(216, 221, 215, 0.9);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-tight);
 }
 .skill-card {
-  padding: 1.15rem 1.15rem 1.05rem;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.72rem;
+}
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), oklch(0.809 0.105 251.813));
 }
 .skill-card h3 {
   margin: 0;
-  font-size: 1.12rem;
+  font-size: 1.08rem;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
 }
 .skill-card p {
   margin: 0;
-  color: var(--muted);
-  line-height: 1.48;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  font-size: 0.92rem;
+  min-height: 2.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .meta-row {
   display: flex;
@@ -242,127 +344,233 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.34rem 0.58rem;
+  padding: 0.32rem 0.56rem;
   border-radius: 999px;
-  background: rgba(47, 174, 161, 0.1);
-  color: #165952;
-  font-size: 0.84rem;
-  font-weight: 700;
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--primary-strong);
+  font-size: 0.76rem;
+  font-weight: 600;
 }
 .pill.alt {
-  background: rgba(242, 177, 52, 0.14);
-  color: #8d5c00;
+  background: var(--muted);
+  color: var(--secondary-foreground);
 }
 .skill-card .cta {
   margin-top: auto;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
 }
 .two-col {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-  gap: 1rem;
+  gap: 0.85rem;
 }
 .panel {
-  padding: 1.2rem;
+  padding: 1rem;
 }
 .panel h3 {
   margin: 0 0 0.8rem;
-  font-size: 1.08rem;
+  font-size: 1rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
-.panel p:last-child {
-  margin-bottom: 0;
+.panel p,
+.panel li {
+  font-size: 0.94rem;
 }
+.panel p:last-child { margin-bottom: 0; }
 .steps {
   margin: 0;
   padding-left: 1.2rem;
 }
-.steps li {
-  margin: 0 0 0.5rem;
-}
+.steps li { margin: 0 0 0.5rem; }
 .footer {
   padding: 2rem 0 3rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-size: 0.95rem;
 }
 .footer a {
   color: inherit;
-  font-weight: 700;
+  font-weight: 600;
 }
 .page-grid {
   display: grid;
-  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
-  gap: 1.2rem;
-  padding: 1rem 0 2.5rem;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 0.8rem 0 2rem;
 }
 .sidebar {
   position: sticky;
-  top: 1rem;
+  top: 6.1rem;
   align-self: start;
 }
 .sidebar .panel {
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--sidebar);
+  border-color: var(--sidebar-border);
 }
-.sidebar h3 {
-  margin-bottom: 0.7rem;
-}
+.sidebar h3 { margin-bottom: 0.7rem; }
 .sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.sidebar li + li {
-  margin-top: 0.34rem;
-}
+.sidebar li + li { margin-top: 0.34rem; }
 .sidebar a {
-  color: var(--muted);
+  color: var(--muted-foreground);
+  display: block;
+  padding: 0.32rem 0.55rem;
+  border-radius: calc(var(--radius) * 0.9);
+  font-size: 0.9rem;
 }
-.content .panel + .panel {
-  margin-top: 1rem;
+.sidebar a:hover {
+  color: var(--foreground);
+  background: rgba(99, 102, 241, 0.07);
 }
-.content h2, .content h3 {
-  letter-spacing: -0.02em;
+.content {
+  min-width: 0;
+  max-width: 54rem;
+}
+.content .panel + .panel { margin-top: 0.85rem; }
+.content h2,
+.content h3 {
+  letter-spacing: -0.05em;
+  scroll-margin-top: 6.8rem;
 }
 .content h2 {
   margin-top: 0;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  text-wrap: balance;
 }
-.content ul, .content ol {
-  padding-left: 1.2rem;
+.content h3 {
+  font-size: 1rem;
 }
-.content li + li {
-  margin-top: 0.32rem;
-}
-.content p, .content li {
-  color: var(--ink);
-  line-height: 1.58;
+.content ul,
+.content ol { padding-left: 1.2rem; }
+.content li + li { margin-top: 0.32rem; }
+.content p,
+.content li {
+  color: var(--foreground);
+  line-height: 1.62;
+  font-size: 0.95rem;
 }
 .lead {
-  font-size: 1.05rem;
-  color: var(--muted);
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  line-height: 1.58;
 }
 .file-list {
   columns: 2;
   column-gap: 1rem;
   padding-left: 1rem;
 }
-.file-list li {
-  break-inside: avoid;
-}
+.file-list li { break-inside: avoid; }
 .callout {
   padding: 0.95rem 1rem;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(31, 111, 139, 0.08), rgba(47, 174, 161, 0.08));
-  border: 1px solid rgba(31, 111, 139, 0.12);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.03));
+  border: 1px solid rgba(99, 102, 241, 0.12);
 }
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.85rem;
+}
+.reference-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem;
+  box-shadow: var(--shadow-tight);
+}
+.reference-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.98rem;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+.reference-card p {
+  margin: 0 0 0.7rem;
+  color: var(--muted-foreground);
+  line-height: 1.52;
+  font-size: 0.9rem;
+}
+.reference-card ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+.reference-card li {
+  color: var(--foreground);
+  font-size: 0.95rem;
+}
+.reference-card li + li { margin-top: 0.24rem; }
+.kicker-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+.kicker {
+  background: linear-gradient(180deg, rgba(79, 70, 229, 0.94), rgba(67, 56, 202, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem;
+  color: var(--primary-foreground);
+  box-shadow: 0 18px 32px rgba(79, 70, 229, 0.18);
+}
+.kicker h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.kicker p {
+  margin: 0;
+  color: rgba(247, 248, 255, 0.9);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+.kicker code {
+  background: rgba(15, 23, 42, 0.28);
+  color: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hero-index .hero-card { min-height: 22rem; }
+.hero-index .hero-grid { align-items: end; }
+.hero-skill .hero-card {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.22), transparent 28%),
+    linear-gradient(180deg, rgba(244, 247, 255, 0.96), rgba(255, 255, 255, 0.9));
+}
+.hero-skill .button-secondary {
+  background: rgba(255, 255, 255, 0.84);
+}
+main { display: block; }
 @media (max-width: 920px) {
-  .hero-grid, .two-col, .page-grid {
+  .hero-grid,
+  .two-col,
+  .page-grid {
     grid-template-columns: 1fr;
   }
-  .sidebar {
-    position: static;
+  .sidebar { position: static; }
+  .file-list { columns: 1; }
+  .topbar { position: static; }
+  .hero h1 { max-width: none; }
+}
+@media (max-width: 640px) {
+  .site-shell {
+    width: min(calc(100% - 1rem), var(--max));
   }
-  .file-list {
-    columns: 1;
+  .topbar-inner,
+  .hero-card,
+  .panel,
+  .skill-card,
+  .kicker,
+  .reference-card {
+    padding-left: 0.95rem;
+    padding-right: 0.95rem;
   }
+  .hero-card { border-radius: 1.2rem; }
 }
 """
 
@@ -372,11 +580,33 @@ class SkillDoc:
     slug: str
     title: str
     name: str
+    version: str
     description: str
     short_description: str
+    card_description: str
     intro_html: str
     sections: list[tuple[str, str]]
     file_paths: list[str]
+    reference_docs: list["ReferenceDoc"]
+
+
+@dataclass
+class ReferenceDoc:
+    key: str
+    nav_label: str
+    title: str
+    intro_html: str
+    sections: list[tuple[str, str]]
+
+
+REFERENCE_ORDER = (
+    ("workflow.md", "Workflow"),
+    ("quality-standard.md", "Quality Standard"),
+    ("validation-checklist.md", "Validation Checklist"),
+    ("term-sheet.md", "Term Sheet"),
+    ("repo-map.md", "Repo Map"),
+    ("tracking-readme.md", "Tracking Templates"),
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -630,6 +860,20 @@ def render_inline(text: str) -> str:
     return rendered
 
 
+def normalize_whitespace(text: str) -> str:
+    return " ".join(text.split())
+
+
+def compact_summary(text: str, max_chars: int = 72) -> str:
+    summary = normalize_whitespace(text)
+    if len(summary) <= max_chars:
+        return summary
+    clipped = summary[: max_chars + 1]
+    if " " in clipped:
+        clipped = clipped.rsplit(" ", 1)[0]
+    return clipped.rstrip(" ,;:-") + "…"
+
+
 def file_inventory(skill_dir: Path) -> list[str]:
     files: list[str] = []
     for path in sorted(skill_dir.rglob("*")):
@@ -642,6 +886,35 @@ def file_inventory(skill_dir: Path) -> list[str]:
             continue
         files.append(rel.as_posix())
     return files
+
+
+def parse_reference_doc(reference_path: Path, nav_label: str) -> ReferenceDoc:
+    text = reference_path.read_text(encoding="utf-8")
+    title, intro_text, sections = parse_body(text)
+    rendered_sections = [(heading, render_markdown(content)) for heading, content in sections if content]
+    intro_html = render_markdown(intro_text)
+    if not intro_html:
+        for heading, content in rendered_sections:
+            if heading.lower() == "purpose":
+                intro_html = content
+                break
+    return ReferenceDoc(
+        key=reference_path.name,
+        nav_label=nav_label,
+        title=title or reference_path.stem,
+        intro_html=intro_html,
+        sections=rendered_sections,
+    )
+
+
+def load_reference_docs(skill_dir: Path) -> list[ReferenceDoc]:
+    refs: list[ReferenceDoc] = []
+    references_dir = skill_dir / "references"
+    for filename, label in REFERENCE_ORDER:
+        ref_path = references_dir / filename
+        if ref_path.exists():
+            refs.append(parse_reference_doc(ref_path, label))
+    return refs
 
 
 def repo_identity() -> tuple[str, str, str]:
@@ -685,11 +958,14 @@ def build_skill_docs() -> list[SkillDoc]:
                 slug=skill_dir.name,
                 title=ui.get("display_name") or title or skill_dir.name,
                 name=frontmatter.get("name", skill_dir.name),
+                version=ui.get("version", ""),
                 description=frontmatter.get("description", ""),
                 short_description=ui.get("short_description", ""),
+                card_description=ui.get("card_description", ""),
                 intro_html=render_markdown(intro_text),
                 sections=[(heading, render_markdown(content)) for heading, content in sections if content],
                 file_paths=file_inventory(skill_dir),
+                reference_docs=load_reference_docs(skill_dir),
             )
         )
     return docs
@@ -708,15 +984,20 @@ def page_template(
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#efe8db">
     <title>{html.escape(page_title)}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{html.escape(asset_prefix)}style.css">
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to Main Content</a>
     <div class="site-shell">
       <header class="topbar">
         <div class="topbar-inner">
           <a class="brand" href="{html.escape(home_href)}">
-            <img src="{html.escape(asset_prefix)}consulting-workflows-mark.svg" alt="Consulting Workflows mark">
+            <img src="{html.escape(asset_prefix)}consulting-workflows-mark.svg" alt="Consulting Workflows mark" width="40" height="40" fetchpriority="high">
             <span>Consulting Workflows</span>
           </a>
           <nav class="nav">
@@ -726,7 +1007,9 @@ def page_template(
           </nav>
         </div>
       </header>
-      {body}
+      <main id="main-content">
+        {body}
+      </main>
       <footer class="footer">
         Generated from the skill folders in <a href="{html.escape(repo_url)}">the repository</a>. If the site and source disagree, the source wins.
       </footer>
@@ -739,13 +1022,15 @@ def page_template(
 def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str:
     cards = []
     for skill in skills:
-        summary = skill.short_description or skill.description
+        summary = compact_summary(skill.card_description or skill.short_description or skill.description)
         cards.append(
             f"""
             <article class="skill-card">
               <div class="meta-row">
                 <span class="pill">{html.escape(skill.name)}</span>
+                <span class="pill alt">v{html.escape(skill.version)}</span>
                 <span class="pill alt">{len(skill.file_paths)} files</span>
+                <span class="pill alt">{len(skill.reference_docs)} reference docs</span>
               </div>
               <h3>{html.escape(skill.title)}</h3>
               <p>{html.escape(summary)}</p>
@@ -754,7 +1039,7 @@ def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str
             """
         )
     body = f"""
-    <section class="hero">
+    <section class="hero hero-index">
       <div class="hero-card">
         <div class="hero-grid">
           <div>
@@ -801,6 +1086,27 @@ def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str
     </section>
 
     <section class="section">
+      <div class="section-head">
+        <h2>What Changed In v1.4</h2>
+        <p>The pack now exposes a real operating system for each skill, not just trigger text and task lists.</p>
+      </div>
+      <div class="kicker-list">
+        <div class="kicker">
+          <h3>Reference packs</h3>
+          <p>Every skill now ships workflow, quality, validation, terminology, repo map, and tracking guidance.</p>
+        </div>
+        <div class="kicker">
+          <h3>Enforced structure</h3>
+          <p>The validator and test suite now fail if reference-doc structure drifts.</p>
+        </div>
+        <div class="kicker">
+          <h3>Document export hardening</h3>
+          <p><code>document-writer</code> now renders Mermaid figures into DOCX with caption styling and document-width control.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="two-col">
         <div class="panel">
           <h3>What gets published</h3>
@@ -813,12 +1119,12 @@ def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str
           </ul>
         </div>
         <div class="panel">
-          <h3>Workflow shape</h3>
+          <h3>Reference system</h3>
           <ol class="steps">
-            <li>Catalog source inputs and record observations.</li>
-            <li>Check consistency and unresolved evidence gaps.</li>
-            <li>Build storyline and choose the right delivery form.</li>
-            <li>Turn the structure into report, presentation, workshop, or final document outputs.</li>
+            <li><strong>Workflow</strong>: operating sequence and back-iteration loop.</li>
+            <li><strong>Quality standard</strong>: what good looks like before handoff.</li>
+            <li><strong>Validation checklist</strong>: ordered release and handoff checks.</li>
+            <li><strong>Term sheet / repo map / tracking</strong>: stable language, file responsibilities, and template discipline.</li>
           </ol>
         </div>
       </div>
@@ -835,9 +1141,23 @@ def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str
 
 
 def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
+    reference_nav = "".join(
+        f'<li><a href="#ref-{slugify(ref.key)}">{html.escape(ref.nav_label)}</a></li>'
+        for ref in skill.reference_docs
+    )
     section_nav = "".join(
         f'<li><a href="#{slugify(heading)}">{html.escape(heading)}</a></li>'
         for heading, _ in skill.sections
+    )
+    reference_blocks = "".join(
+        f"""
+        <article class="reference-card" id="ref-{slugify(ref.key)}">
+          <h3>{html.escape(ref.title)}</h3>
+          {ref.intro_html}
+          <ul>{"".join(f"<li>{html.escape(heading)}</li>" for heading, _ in ref.sections)}</ul>
+        </article>
+        """
+        for ref in skill.reference_docs
     )
     section_blocks = "".join(
         f"""
@@ -849,9 +1169,9 @@ def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
         for heading, content in skill.sections
     )
     files_html = "".join(f"<li><code>{html.escape(path)}</code></li>" for path in skill.file_paths)
-    summary = skill.short_description or skill.description
+    summary = skill.short_description or skill.card_description or skill.description
     body = f"""
-    <section class="hero">
+    <section class="hero hero-skill">
       <div class="hero-card">
         <div class="eyebrow">Skill page</div>
         <h1>{html.escape(skill.title)}</h1>
@@ -869,6 +1189,7 @@ def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
           <h3>At a glance</h3>
           <div class="meta-row">
             <span class="pill">{html.escape(skill.name)}</span>
+            <span class="pill alt">v{html.escape(skill.version)}</span>
             <span class="pill alt">{len(skill.file_paths)} files</span>
           </div>
           <p class="lead">{html.escape(skill.description)}</p>
@@ -876,7 +1197,10 @@ def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
         <div class="panel">
           <h3>Sections</h3>
           <ul>
+            <li><a href="#reference-pack">Reference pack</a></li>
+            {reference_nav}
             {section_nav}
+            <li><a href="#file-inventory">File inventory</a></li>
           </ul>
         </div>
       </aside>
@@ -884,6 +1208,13 @@ def render_skill_page(skill: SkillDoc, repo_url: str, release_url: str) -> str:
         <section class="panel">
           <h2>Overview</h2>
           {skill.intro_html or f"<p>{html.escape(skill.description)}</p>"}
+        </section>
+        <section class="panel" id="reference-pack">
+          <h2>Reference Pack</h2>
+          <p class="lead">These are the operating documents that define how the skill should be run, checked, and handed off.</p>
+          <div class="reference-grid">
+            {reference_blocks}
+          </div>
         </section>
         {section_blocks}
         <section class="panel" id="file-inventory">

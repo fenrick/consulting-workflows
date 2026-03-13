@@ -1,5 +1,4 @@
 # Open Questions
 
-| ID | Contradiction or gap | Blocking | Owner | Next step |
-|---|---|---|---|---|
-
+| ID | Contradiction or gap | Affected artifact | Blocking (`yes`/`no`) | Owner | Next step |
+|---|---|---|---|---|---|

@@ -7,6 +7,8 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+import json
+import importlib.util
 from pathlib import Path
 
 
@@ -30,6 +32,8 @@ EXPECTED_SKILLS = {
     "workshop-writeup-composer",
     "document-writer",
 }
+
+EXPECTED_SKILL_VERSION = "1.4.0"
 
 REQUIRED_TRACKING_FILES = {
     "document-brief.md",
@@ -75,6 +79,27 @@ def parse_skill_name(text: str) -> str:
     raise TestFailure("Missing `name:` in SKILL.md frontmatter")
 
 
+def parse_openai_interface_yaml(path: Path) -> dict[str, str]:
+    in_interface = False
+    data: dict[str, str] = {}
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.rstrip()
+        if not line.strip():
+            continue
+        if not in_interface:
+            if line.strip() == "interface:":
+                in_interface = True
+            continue
+        if not raw_line.startswith("  "):
+            break
+        stripped = line.strip()
+        if ":" not in stripped:
+            continue
+        key, value = stripped.split(":", 1)
+        data[key.strip()] = value.strip().strip('"').strip("'")
+    return data
+
+
 def parse_output_paths_in_section(text: str, section_heading: str) -> list[str]:
     lines = text.splitlines()
     start = None
@@ -105,6 +130,24 @@ def test_skill_set_complete() -> None:
         found.add(parse_skill_name(path.read_text(encoding="utf-8")))
     missing = EXPECTED_SKILLS - found
     assert_true(not missing, f"Missing expected skills: {sorted(missing)}")
+
+
+def test_openai_metadata_contract() -> None:
+    for skill_dir in sorted(path for path in SKILLS_DIR.iterdir() if path.is_dir()):
+        openai_yaml = skill_dir / "agents" / "openai.yaml"
+        assert_true(openai_yaml.exists(), f"{skill_dir.name}: missing agents/openai.yaml")
+        interface = parse_openai_interface_yaml(openai_yaml)
+        for key in ("display_name", "short_description", "card_description", "version", "default_prompt"):
+            assert_true(interface.get(key), f"{skill_dir.name}: missing interface.{key}")
+        card_description = " ".join(str(interface["card_description"]).split())
+        assert_true(
+            len(card_description) <= 80,
+            f"{skill_dir.name}: interface.card_description exceeds 80 characters",
+        )
+        assert_true(
+            str(interface["version"]) == EXPECTED_SKILL_VERSION,
+            f"{skill_dir.name}: interface.version must be {EXPECTED_SKILL_VERSION}",
+        )
 
 
 def test_output_contracts() -> None:
@@ -197,6 +240,70 @@ def test_document_writer_output_contract() -> None:
         )
 
 
+def test_document_writer_mermaid_tooling_contract() -> None:
+    package_json = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+    dev_dependencies = package_json.get("devDependencies", {})
+    assert_true(
+        "@mermaid-js/mermaid-cli" in dev_dependencies,
+        "document-writer: missing @mermaid-js/mermaid-cli dev dependency",
+    )
+
+    render_script = SKILLS_DIR / "document-writer" / "scripts" / "render_mermaid.py"
+    assert_true(render_script.exists(), "document-writer: missing scripts/render_mermaid.py")
+
+    mermaid_config = SKILLS_DIR / "document-writer" / "assets" / "mermaid" / "mermaid-config.json"
+    assert_true(mermaid_config.exists(), "document-writer: missing assets/mermaid/mermaid-config.json")
+    config = json.loads(mermaid_config.read_text(encoding="utf-8"))
+    assert_true(
+        config.get("flowchart", {}).get("defaultRenderer") == "elk",
+        "document-writer: Mermaid config must default to ELK renderer",
+    )
+
+    result = run([sys.executable, str(render_script), "--help"], cwd=ROOT)
+    assert_true(result.returncode == 0, f"render_mermaid --help failed:\n{result.stderr}{result.stdout}")
+    script_text = render_script.read_text(encoding="utf-8")
+    assert_true("DEFAULT_WIDTH = 3200" in script_text, "document-writer: Mermaid width default regressed")
+    assert_true("DEFAULT_SCALE = 5" in script_text, "document-writer: Mermaid scale default regressed")
+
+
+def test_document_writer_mermaid_preprocessing_contract() -> None:
+    export_script = SKILLS_DIR / "document-writer" / "scripts" / "export_docx.py"
+    spec = importlib.util.spec_from_file_location("document_writer_export_docx", export_script)
+    assert_true(spec is not None and spec.loader is not None, "document-writer: could not load export_docx module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    calls: list[tuple[str, str]] = []
+
+    def fake_render(renderer_script, mermaid_source, output_dir, basename, env=None):
+        calls.append((mermaid_source, basename))
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_file = output_dir / f"{basename}.png"
+        output_file.write_bytes(b"png")
+        return output_file
+
+    module.render_mermaid_block = fake_render
+    sample = """Intro text.\n\n<!-- FigureCaption: Figure 1: Example diagram -->\n:::mermaid\nflowchart LR\n  A-->B\n:::\n"""
+    with tempfile.TemporaryDirectory() as tmp:
+        transformed, count = module.preprocess_mermaid_blocks(
+            markdown_text=sample,
+            renderer_script=export_script.parent / "render_mermaid.py",
+            working_dir=Path(tmp),
+            env=None,
+        )
+    assert_true(count == 1, "document-writer: Mermaid preprocessing did not count diagrams correctly")
+    assert_true(len(calls) == 1, "document-writer: Mermaid preprocessing did not render the diagram")
+    assert_true("flowchart LR" in calls[0][0], "document-writer: Mermaid source was not passed through")
+    assert_true(
+        "![diagram](media/mermaid-figure-01.png)" in transformed and "Figure 1: Example diagram" in transformed,
+        "document-writer: Mermaid block was not replaced with a standalone image and caption",
+    )
+    assert_true(
+        "{width=5.55in}" in transformed,
+        "document-writer: Mermaid figure width policy regressed",
+    )
+
+
 def test_prohibited_wording() -> None:
     for path in find_skill_files():
         text = path.read_text(encoding="utf-8")
@@ -212,20 +319,90 @@ def test_skill_self_containment() -> None:
         skill_dir = path.parent
         references_dir = skill_dir / "references"
         assert_true(references_dir.exists(), f"{skill_dir.name}: missing references/")
-        assert_true(
-            (references_dir / "quality-standard.md").exists(),
-            f"{skill_dir.name}: missing references/quality-standard.md",
-        )
-        assert_true(
-            (references_dir / "workflow.md").exists(),
-            f"{skill_dir.name}: missing references/workflow.md",
-        )
+        for reference_name in (
+            "workflow.md",
+            "quality-standard.md",
+            "validation-checklist.md",
+            "term-sheet.md",
+            "repo-map.md",
+            "tracking-readme.md",
+        ):
+            assert_true(
+                (references_dir / reference_name).exists(),
+                f"{skill_dir.name}: missing references/{reference_name}",
+            )
         if skill_dir.name == "document-writer":
             continue
         templates = skill_dir / "assets" / "templates"
         assert_true(templates.exists(), f"{skill_dir.name}: missing assets/templates/")
         template_files = list(templates.glob("*.md"))
         assert_true(template_files, f"{skill_dir.name}: no template files under assets/templates/")
+
+
+def test_reference_docs_are_discoverable_from_skill_contract() -> None:
+    for path in find_skill_files():
+        text = path.read_text(encoding="utf-8")
+        for reference_name in (
+            "references/workflow.md",
+            "references/quality-standard.md",
+            "references/validation-checklist.md",
+            "references/term-sheet.md",
+            "references/repo-map.md",
+            "references/tracking-readme.md",
+        ):
+            assert_true(
+                reference_name in text,
+                f"{path.parent.name}: missing `{reference_name}` in SKILL.md",
+            )
+
+
+def test_reference_doc_heading_contract() -> None:
+    expected_headings = {
+        "workflow.md": (
+            "## Purpose",
+            "## Working files",
+            "## Back-iteration loop",
+            "## Handoff and closure",
+        ),
+        "quality-standard.md": (
+            "## Purpose",
+            "## Core standard",
+            "## Authoring standard",
+            "## Tracking standard",
+            "## Handoff standard",
+        ),
+        "validation-checklist.md": (
+            "## Purpose",
+            "## How to use this checklist",
+        ),
+        "term-sheet.md": (
+            "## Purpose",
+            "## Core terms",
+            "## Usage rules",
+            "## Drift-control rules",
+        ),
+        "repo-map.md": (
+            "## Purpose",
+            "## Main files",
+            "## Typical flow",
+            "## Handoff note",
+        ),
+        "tracking-readme.md": (
+            "## Purpose",
+            "## Template roles",
+            "## Working rule",
+        ),
+    }
+    for path in find_skill_files():
+        references_dir = path.parent / "references"
+        for ref_name, headings in expected_headings.items():
+            ref_path = references_dir / ref_name
+            text = ref_path.read_text(encoding="utf-8")
+            for heading in headings:
+                assert_true(
+                    heading in text,
+                    f"{path.parent.name}: {ref_name} missing heading `{heading}`",
+                )
 
 
 def test_packaging_smoke() -> None:
@@ -288,6 +465,7 @@ def main() -> int:
     tests = [
         ("structure lint", test_structure_lint),
         ("skill set complete", test_skill_set_complete),
+        ("openai metadata contract", test_openai_metadata_contract),
         ("output contracts", test_output_contracts),
         ("orchestrator pipeline consistency", test_orchestrator_pipeline_consistency),
         ("document-writer output contract", test_document_writer_output_contract),

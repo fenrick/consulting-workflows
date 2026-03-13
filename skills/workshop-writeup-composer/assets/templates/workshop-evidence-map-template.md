@@ -1,5 +1,4 @@
 # Workshop Evidence Map
 
-| Claim | Transcript/artifact source | Confidence | Notes |
-|---|---|---|---|
-
+| Claim or action | Transcript / artifact source | Confidence | Source type | Notes |
+|---|---|---|---|---|

@@ -1,4 +1,6 @@
 interface:
   display_name: "Evidence Consistency Auditor"
   short_description: "Cross-check claims, contradictions, and supersession risks"
+  card_description: "Audit claims for contradictions, supersession issues, and support gaps."
+  version: "1.4.0"
   default_prompt: "Use this skill to audit consistency across source registers, review notes, storylines, and storyboards, and produce an evidence consistency report with explicit unresolved items."

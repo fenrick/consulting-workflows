@@ -1,5 +1,4 @@
 # Open Questions
 
-| ID | Issue | Blocking | Owner | Next step |
-|---|---|---|---|---|
-
+| ID | Issue | Session / artifact | Blocking (`yes`/`no`) | Owner | Next step |
+|---|---|---|---|---|---|

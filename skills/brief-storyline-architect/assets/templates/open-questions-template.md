@@ -1,5 +1,4 @@
 # Open Questions
 
-| ID | Proof gap | Impact | Owner | Next step |
-|---|---|---|---|---|
-
+| ID | Proof gap or challenge | Affected pillar | Impact | Blocking (`yes`/`no`) | Owner | Next step |
+|---|---|---|---|---|---|---|

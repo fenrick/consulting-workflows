@@ -1,5 +1,20 @@
 # Validation Checklist
 
+## Purpose
+
+Use this checklist to decide whether the document is fit for release, packaging, or user review.
+
+It is a release gate. If a check fails, either fix the document or log the issue explicitly.
+
+## How to use this checklist
+
+Run the checklist after major revisions and again before treating the document as final.
+
+- Run source and structure checks before spending time on polish.
+- Run voice and content checks before final packaging.
+- Run file, media, and review checks immediately before release or handoff.
+- If a check cannot be satisfied yet, record that explicitly in tracking rather than assuming it will be handled later.
+
 ## Source checks
 
 - Every changed factual claim is traceable to a readable working source set, or is explicitly marked as requiring user-supplied source confirmation.
@@ -33,7 +48,9 @@
 - Slide shorthand has been rewritten into report prose.
 - Abstract nouns do not pile up in the weakest sections.
 - Later paragraphs are not overloaded with linked ideas before the sentence lands.
-- A final prose-quality pass has been run, and any edits from that pass still preserve the approved departmental tone.
+- The cyclic authoring loop was actually used for substantial revisions: skeleton, bullet points, paragraphs, narrative flow, humanise, neutral voice and simple language.
+- Multiple humaniser passes were run near release, and the final pass made only trivial or no meaningful changes.
+- Any edits from the final prose-quality pass still preserve the approved departmental tone.
 
 ## Content checks
 
@@ -41,6 +58,8 @@
 - Any appendix-style additions are clearly separated from the main narrative.
 - Figure introductions explain what the reader should take from the image.
 - Every figure has a plain-language reason for being there.
+- Every figure has a caption.
+- Every table has a caption.
 - Reconstructed figures are identified as reconstructed where that matters.
 - Review-style appendices include a findings register if the document relies on many discrete findings.
 - No duplicate paragraphs or near-duplicates remain after merging old and new wording.
@@ -57,11 +76,13 @@
 - Existing media references still point to valid files.
 - No orphaned media files are created without a matching reference.
 - If Writage or Word is in scope, figure formats have been checked for compatibility and fallback PNGs exist where needed.
+- Mermaid-authored diagrams were rendered through `scripts/render_mermaid.py` or an equivalent documented path, and high-resolution PNG outputs exist for embedding.
 - If Pandoc document export is in scope, the reference doc exists and the export path has been smoke-tested.
 - For substantial documents, the exported document includes a table of contents from level 1 headings unless it was deliberately disabled.
 - No deep-research citation tokens, smart paste artefacts, or malformed markdown remain.
 - Every Writage or Pandoc citation key used in the source markdown exists in the active bibliography file.
 - Citation syntax uses Writage/Pandoc form such as `[@key]`, not manual markdown footnotes.
+- Bibliography formatting follows APA v7 unless the user explicitly requested another style.
 - Bibliography entries include full document titles and any relevant formal identifiers where available.
 - The assembly command succeeds if the combined output is meant to be current.
 - Any assembly regression tests provided by the project succeed if assembly behaviour was touched.

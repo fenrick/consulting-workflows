@@ -9,11 +9,17 @@ Use this skill to produce a BCG/McKinsey-style narrative backbone before authori
 
 ## Bundled materials
 
-- `references/workflow.md`
-- `references/quality-standard.md`
-- `assets/templates/storyline-architecture-template.md`
-- `assets/templates/open-questions-template.md`
-- `assets/templates/decision-log-template.md`
+Read in this order:
+
+1. `references/workflow.md`
+2. `references/validation-checklist.md`
+3. `references/quality-standard.md`
+4. `references/term-sheet.md`
+5. `references/repo-map.md`
+6. `references/tracking-readme.md`
+7. `assets/templates/storyline-architecture-template.md`
+8. `assets/templates/open-questions-template.md`
+9. `assets/templates/decision-log-template.md`
 
 ## Inputs
 
@@ -40,6 +46,7 @@ Apply `references/quality-standard.md` before finalizing outputs.
 - keep storyline state in `tracking/storyline-architecture.md`
 - keep unresolved proof gaps in `tracking/open-questions.md`
 - keep storyline judgment calls in `tracking/decision-log.md`
+- build the artifact through skeleton, bullet logic, short prose, flow pass, and neutral-language pass
 
 ## Back-iteration loop
 
