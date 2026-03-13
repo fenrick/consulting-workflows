@@ -1,3 +1,16 @@
+# 1.0.0 (2026-03-13)
+
+
+### Features
+
+* add consulting workflow orchestrator and stage-gate flow ([53f4a1a](https://github.com/fenrick/consulting-workflows/commit/53f4a1a27b028fd339fae95befe4b055e8f856c2))
+* add document-writer skill with pandoc export tooling ([5141728](https://github.com/fenrick/consulting-workflows/commit/5141728a4934cf2ff3c1e9246496d4403e543af3))
+* add input evidence cataloger and consistency auditor skills ([31a8789](https://github.com/fenrick/consulting-workflows/commit/31a87891c807ea9157a7f58b247d36d691b93213))
+* add report and presentation storyboard builder skills ([6213a37](https://github.com/fenrick/consulting-workflows/commit/6213a3743925032ad55434a3cc4a61befc825686))
+* add workshop writeup composer skill ([11f4978](https://github.com/fenrick/consulting-workflows/commit/11f4978104ee703dfdebf199a769330cee8060e5))
+* **ci:** add quality and security CI workflows ([5c9aca7](https://github.com/fenrick/consulting-workflows/commit/5c9aca7fe495f4521738a45783900264ae54b715))
+* **ci:** adopt semantic-release for automated versioning and releases ([08c1fd8](https://github.com/fenrick/consulting-workflows/commit/08c1fd8b50bd00882ba4b27d073157b5fb8137e1))
+
 # Changelog
 
 All notable changes to this skill pack are documented in this file.
