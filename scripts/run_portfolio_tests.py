@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+import json
 from pathlib import Path
 
 
@@ -195,6 +196,24 @@ def test_document_writer_output_contract() -> None:
             filename in text,
             f"document-writer: missing required tracking artifact `{filename}` in SKILL contract",
         )
+
+
+def test_document_writer_mermaid_tooling_contract() -> None:
+    package_json = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+    dev_dependencies = package_json.get("devDependencies", {})
+    assert_true(
+        "@mermaid-js/mermaid-cli" in dev_dependencies,
+        "document-writer: missing @mermaid-js/mermaid-cli dev dependency",
+    )
+
+    render_script = SKILLS_DIR / "document-writer" / "scripts" / "render_mermaid.py"
+    assert_true(render_script.exists(), "document-writer: missing scripts/render_mermaid.py")
+
+    mermaid_config = SKILLS_DIR / "document-writer" / "assets" / "mermaid" / "mermaid-config.json"
+    assert_true(mermaid_config.exists(), "document-writer: missing assets/mermaid/mermaid-config.json")
+
+    result = run([sys.executable, str(render_script), "--help"], cwd=ROOT)
+    assert_true(result.returncode == 0, f"render_mermaid --help failed:\n{result.stderr}{result.stdout}")
 
 
 def test_prohibited_wording() -> None:

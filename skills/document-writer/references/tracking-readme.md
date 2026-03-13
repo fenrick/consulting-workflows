@@ -21,4 +21,16 @@ For reviews, audits, and substantial document-analysis work:
 - use `review-notebook-template.md` while processing sources
 - use `findings-workbook-template.md` once patterns start hardening into reportable findings
 
+Template intent:
+
+- `document-brief-template.md`: lock scope, audience, output format, and hard constraints before drafting
+- `source-register-template.md`: track provenance, citation readiness, and safe-use boundaries for each source
+- `section-status-template.md`: track section state, owner, dependencies, and next pass
+- `decision-log-template.md`: record material writing, evidence, and packaging decisions
+- `open-questions-template.md`: track blocking and non-blocking factual gaps
+- `editorial-pass-template.md`: record pass order, caption/citation checks, and voice cleanup
+- `release-check-template.md`: final gate for assembly, captions, citations, and packaging
+- `review-notebook-template.md`: preserve observations and tentative findings during source intake
+- `findings-workbook-template.md`: harden emerging findings into report-ready patterns
+
 Do not over-manage trivial work. Use the full set when the document has multiple sections, mixed sources, or a non-trivial review and release path.

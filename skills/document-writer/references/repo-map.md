@@ -7,6 +7,7 @@ If the target repo uses different directories, adapt the paths once and keep the
 ## Main working surfaces
 
 - `report-body/`: canonical split draft
+- `report-body/diagrams/`: editable Mermaid source files when diagrams are authored in Mermaid
 - `report-body/media/`: images referenced by the split draft
 - `report-body/references.bib`: bibliography for Pandoc/Writage citations
 - `report-body/title-block.md`: document title and subtitle block
@@ -19,10 +20,12 @@ If the target repo uses different directories, adapt the paths once and keep the
 
 - `scripts/assemble_report.py`: combines split sections into `full/combined-report.md`
 - `scripts/export_docx.py`: exports the assembled markdown to a packaged document using Pandoc
+- `scripts/render_mermaid.py`: renders Mermaid source files to high-resolution PNG/SVG outputs for embedding
 - `scripts/scaffold_document.py`: creates the baseline title block, front-end section files, and tracking files
 - `scripts/package_skill.py`: packages the entire skill as a shareable zip
 
 Run the first two from the target project root unless explicit paths are provided.
+Run Mermaid rendering from the target project root as well when diagram assets are part of the document flow.
 
 ## Controls
 
@@ -31,6 +34,7 @@ Common target-repo control files:
 - `workflow.md`: working method and pass order
 - `controls/validation-checklist.md`: release and editing gate
 - `controls/term-sheet.md`: stable terminology
+- `controls/references.bib`: optional mirror if the target repo stores bibliography controls outside `report-body/`
 
 Mirrored bundle references:
 
@@ -42,6 +46,7 @@ Mirrored bundle references:
 
 - target repo: usually `tracking/*.md`
 - bundle copies: `assets/tracking-templates/*.md`
+- editable diagram config: `assets/mermaid/mermaid-config.json`
 
 ## Typical flow
 
@@ -49,9 +54,10 @@ Mirrored bundle references:
 2. Process sources and keep the review notebook current.
 3. Promote stable items into the findings workbook.
 4. Draft or revise `report-body/`.
-5. Assemble.
-6. Export the packaged document if needed.
-7. Run the validation and prose passes.
+5. Render or refresh Mermaid-derived media in `report-body/media/`.
+6. Assemble.
+7. Export the packaged document if needed.
+8. Run the validation and prose passes.
 
 ## Portability notes
 

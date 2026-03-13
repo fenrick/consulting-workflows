@@ -1,8 +1,8 @@
 # Source Register
 
-| Source | Format | Role | Status | Safe use | Notes |
-| --- | --- | --- | --- | --- | --- |
-| | | Primary / Supporting / Contextual | Unread / Indexed / Reviewed / Verified for citation | Facts / Framing / Cross-check only | |
+| Source | Format | Role | Status | Safe use | Citation key | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| | | Primary / Supporting / Contextual | Unread / Indexed / Reviewed / Verified for citation | Facts / Framing / Cross-check only | `[@key]` if used | |
 
 ## Status rules
 
@@ -22,3 +22,4 @@
 - Record filename mismatches here instead of trusting memory.
 - Record when a PDF replaced an older PPTX or document file.
 - Record any source that is too weak to carry a claim on its own.
+- Record the active citation key for any source used in the bibliography.

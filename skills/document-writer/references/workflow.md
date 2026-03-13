@@ -104,6 +104,12 @@ Before editing the body, lock these items:
 - expected finding structure
 - citation method
 
+Default citation contract:
+
+- APA v7 bibliography formatting
+- Pandoc/Writage in-text citations such as `[@key]`
+- no manual markdown footnote citations unless the user explicitly asks for them
+
 For review-style documents, the document should read as a baseline that informs later decisions, not as a disguised recommendation paper.
 
 If the audience includes non-specialists:
@@ -191,6 +197,13 @@ Every figure must earn its place.
 
 Treat figure format as a delivery risk, not only a design choice.
 
+If the figure starts as Mermaid:
+
+- keep the editable `.mmd` source in `report-body/diagrams/` or an equivalent tracked path
+- render a high-resolution PNG for embedding with `python3 scripts/render_mermaid.py`
+- keep the SVG output if future editing is likely
+- record the render path in the editorial pass log if someone else will package the document
+
 When the output may pass through Writage or Word:
 
 - do not rely on SVG alone
@@ -204,11 +217,18 @@ Before a figure:
 - say what it shows
 - say why it matters
 - translate technical or model-heavy content for non-specialist readers
+- include a caption
 
 After a figure:
 
 - connect it back to the section logic
 - avoid leaving the image to speak for itself
+
+For tables:
+
+- include a caption
+- keep headings and units explicit
+- explain the point of the table in the surrounding prose
 
 If a figure is impressive but not useful, cut it.
 
@@ -264,11 +284,13 @@ Do not spend time polishing sentences inside a broken structure.
 For substantial work, run these passes as a loop, not a single sweep:
 
 1. skeleton draft
-2. flesh out the evidence and reasoning
-3. rewrite for flow
-4. run the natural-voice or prose-quality pass
-5. read the whole document in sequence
-6. repeat until the flow holds together cleanly
+2. bullet points
+3. paragraphs
+4. narrative flow pass
+5. humanise the awkward machine phrasing
+6. restore neutral voice and simple language
+7. read the whole document in sequence
+8. repeat until the flow holds together cleanly
 
 The loop matters because a document that reads well section by section can still fail once read end to end.
 
@@ -339,6 +361,7 @@ Before release:
 - confirm every in-text citation resolves
 - remove orphaned bibliography entries that are no longer cited unless the section is a reviewed-source register
 - normalise titles and identifiers
+- format bibliography entries to APA v7 unless the user explicitly requested a different style
 - distinguish reviewed documents from sampled or indexed material
 - make sure comparative context is not presented as direct evidence
 - update the release checklist if one is being used
