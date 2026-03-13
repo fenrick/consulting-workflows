@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/fenrick/consulting-workflows/compare/v1.1.0...v1.2.0) (2026-03-13)
+
+
+### Features
+
+* **repo:** improve GitHub project presentation ([f4db9c5](https://github.com/fenrick/consulting-workflows/commit/f4db9c5d77294ffda20e2d769c6492e0c8d1d550))
+
 # [1.1.0](https://github.com/fenrick/consulting-workflows/compare/v1.0.1...v1.1.0) (2026-03-13)
 
 
