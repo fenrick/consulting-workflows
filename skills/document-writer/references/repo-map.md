@@ -63,3 +63,9 @@ Mirrored bundle references:
 ## Handoff note
 
 The packaged output should travel with the working markdown, tracking files, bibliography, and media assets. The bundle is not complete if only the final document survives.
+
+Local fixture note:
+
+- temporary comparison files under `tests/` may be used while tuning export behaviour
+- they are local verification aids unless they have been deliberately curated as repo fixtures
+- do not treat disposable `tests/` artifacts as part of the portable skill bundle

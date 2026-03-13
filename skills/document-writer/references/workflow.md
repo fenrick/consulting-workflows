@@ -373,6 +373,13 @@ Do not switch to direct binary-document authoring here unless the user explicitl
 
 If another export path is used, it must consume the canonical markdown draft. Do not migrate the document body into a Node, Python, or template generator just to produce the final file.
 
+For local-only export tuning:
+
+- it is acceptable to keep disposable comparison files under `tests/` while tuning the export path
+- treat those files as local fixtures, not portfolio assets
+- compare generated output against the local fixture and then keep only the code changes, not the fixture itself
+- do not commit ad hoc fixture documents, generated DOCX files, or borrowed reference artifacts unless they have been deliberately curated for the repo
+
 ### 11. References and evidence register pass
 
 Before release:
