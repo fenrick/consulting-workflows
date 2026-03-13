@@ -14,7 +14,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "python3 scripts/package_skill_pack.py --output dist/consulting-workflows-v${nextRelease.version}"
+        "prepareCmd": "python3 scripts/package_skill_pack.py --output dist/consulting-workflows"
       }
     ],
     [
@@ -22,12 +22,12 @@
       {
         "assets": [
           {
-            "path": "dist/consulting-workflows-v${nextRelease.version}.zip",
-            "label": "consulting-workflows-v${nextRelease.version}.zip"
+            "path": "dist/consulting-workflows.zip",
+            "label": "consulting-workflows.zip"
           }
         ],
-        "successComment": false,
-        "failComment": false,
+        "successCommentCondition": false,
+        "failCommentCondition": false,
         "releasedLabels": false
       }
     ],
