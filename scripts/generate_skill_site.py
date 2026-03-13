@@ -530,6 +530,11 @@ pre code { background: transparent; padding: 0; color: inherit; }
   line-height: 1.5;
   font-size: 0.9rem;
 }
+.kicker code {
+  background: rgba(15, 23, 42, 0.28);
+  color: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
 .hero-index .hero-card { min-height: 22rem; }
 .hero-index .hero-grid { align-items: end; }
 .hero-skill .hero-card {
