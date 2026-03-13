@@ -78,3 +78,4 @@ Default output:
 
 - Semantic version tags: `vMAJOR.MINOR.PATCH`
 - See [`CHANGELOG.md`](CHANGELOG.md)
+- Tagging a release (`git tag vX.Y.Z && git push origin vX.Y.Z`) triggers the release workflow and publishes `dist/consulting-workflows.zip`.
