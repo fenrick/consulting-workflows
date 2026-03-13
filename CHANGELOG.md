@@ -1,3 +1,25 @@
+# [1.4.0](https://github.com/fenrick/consulting-workflows/compare/v1.3.0...v1.4.0) (2026-03-13)
+
+
+### Bug Fixes
+
+* **site:** improve kicker code contrast ([11dc927](https://github.com/fenrick/consulting-workflows/commit/11dc927f4df3750a327abd32f9108907d078beed))
+
+
+### Features
+
+* **document-writer:** harden authoring and diagram workflow ([72ddc62](https://github.com/fenrick/consulting-workflows/commit/72ddc629d9fc4572f080aaec23987f666d2cad5d))
+* **document-writer:** render mermaid blocks during export ([cdc9366](https://github.com/fenrick/consulting-workflows/commit/cdc9366d7f01d10da9addd17fdc1703bd6ac49c1))
+* **document-writer:** set document figure width policy ([977b6d0](https://github.com/fenrick/consulting-workflows/commit/977b6d0c30692943d5331c25840fe3b3cf1fdaf0))
+* **document-writer:** style exported figure captions ([e2f87ba](https://github.com/fenrick/consulting-workflows/commit/e2f87ba34c850032779eb4ead56af4899b431da3))
+* **document-writer:** tune mermaid defaults ([a4b5385](https://github.com/fenrick/consulting-workflows/commit/a4b53855bba6a45758cf120978901097c257921e))
+* **site:** align docs theme with geist design system ([4e47a31](https://github.com/fenrick/consulting-workflows/commit/4e47a31ebad1b8ebc973a3c8c7f42f7f0e08e7dc))
+* **site:** normalize skill card description length ([e138019](https://github.com/fenrick/consulting-workflows/commit/e13801961fbd54b3bf977cd2b61c058ac253352e))
+* **site:** redesign docs site for v1.4 ([d1496b4](https://github.com/fenrick/consulting-workflows/commit/d1496b467a9277f21585560db9e3d4d9c0310e84))
+* **skills:** add card descriptions and version metadata ([ef00478](https://github.com/fenrick/consulting-workflows/commit/ef00478e6b11d1f12ac35d35fcc8560e04625d05))
+* **skills:** enforce reference contracts ([bcc43f9](https://github.com/fenrick/consulting-workflows/commit/bcc43f9fd11a319a9bf30d415783a503dd28392f))
+* **skills:** standardize reference packs ([78cc9a3](https://github.com/fenrick/consulting-workflows/commit/78cc9a312461e04c5bbede842f24904c300135d7))
+
 # [1.3.0](https://github.com/fenrick/consulting-workflows/compare/v1.2.0...v1.3.0) (2026-03-13)
 
 
