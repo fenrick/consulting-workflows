@@ -200,6 +200,7 @@ Treat figure format as a delivery risk, not only a design choice.
 If the figure starts as Mermaid:
 
 - keep the editable `.mmd` source in `report-body/diagrams/` or an equivalent tracked path
+- use the bundled ELK-based neutral config unless the document has a stronger visual requirement
 - render a high-resolution PNG for embedding with `python3 scripts/render_mermaid.py`
 - keep the SVG output if future editing is likely
 - record the render path in the editorial pass log if someone else will package the document

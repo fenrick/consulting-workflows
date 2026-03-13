@@ -8,8 +8,8 @@ import sys
 from pathlib import Path
 
 
-DEFAULT_WIDTH = 2400
-DEFAULT_SCALE = 4
+DEFAULT_WIDTH = 3200
+DEFAULT_SCALE = 5
 
 
 def run(cmd: list[str]) -> None:
@@ -40,7 +40,7 @@ def render(input_file: Path, output_file: Path, config_file: Path, width: int, s
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Render Mermaid diagrams to high-resolution PNG and SVG outputs."
+        description="Render Mermaid diagrams to high-resolution PNG and SVG outputs suitable for document embedding."
     )
     parser.add_argument("input", type=Path, help="Path to the Mermaid source file (.mmd).")
     parser.add_argument(
@@ -57,8 +57,18 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         help="Optional Mermaid config file. Defaults to assets/mermaid/mermaid-config.json.",
     )
-    parser.add_argument("--width", type=int, default=DEFAULT_WIDTH, help="Render width in pixels.")
-    parser.add_argument("--scale", type=int, default=DEFAULT_SCALE, help="Render scale multiplier.")
+    parser.add_argument(
+        "--width",
+        type=int,
+        default=DEFAULT_WIDTH,
+        help="Render width in pixels. Defaults to a Word-friendly high-resolution width.",
+    )
+    parser.add_argument(
+        "--scale",
+        type=int,
+        default=DEFAULT_SCALE,
+        help="Render scale multiplier. Defaults to a high-resolution document-safe scale.",
+    )
     parser.add_argument(
         "--background",
         default="transparent",

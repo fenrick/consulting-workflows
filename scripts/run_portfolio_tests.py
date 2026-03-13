@@ -211,9 +211,17 @@ def test_document_writer_mermaid_tooling_contract() -> None:
 
     mermaid_config = SKILLS_DIR / "document-writer" / "assets" / "mermaid" / "mermaid-config.json"
     assert_true(mermaid_config.exists(), "document-writer: missing assets/mermaid/mermaid-config.json")
+    config = json.loads(mermaid_config.read_text(encoding="utf-8"))
+    assert_true(
+        config.get("flowchart", {}).get("defaultRenderer") == "elk",
+        "document-writer: Mermaid config must default to ELK renderer",
+    )
 
     result = run([sys.executable, str(render_script), "--help"], cwd=ROOT)
     assert_true(result.returncode == 0, f"render_mermaid --help failed:\n{result.stderr}{result.stdout}")
+    script_text = render_script.read_text(encoding="utf-8")
+    assert_true("DEFAULT_WIDTH = 3200" in script_text, "document-writer: Mermaid width default regressed")
+    assert_true("DEFAULT_SCALE = 5" in script_text, "document-writer: Mermaid scale default regressed")
 
 
 def test_prohibited_wording() -> None:

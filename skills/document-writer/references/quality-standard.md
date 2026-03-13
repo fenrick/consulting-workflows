@@ -17,6 +17,7 @@
 ## Media standard
 
 - Every figure and every table must have a caption.
+- Mermaid diagrams must default to the ELK layout engine and a neutral palette unless the document has a stronger visual requirement.
 - Mermaid diagrams must be rendered to high-resolution PNG, with SVG retained as the editable source where useful.
 - Figures and tables must be introduced in the body and explained in plain language.
 
