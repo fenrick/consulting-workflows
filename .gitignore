@@ -15,3 +15,10 @@ inputs/
 report-body/
 
 .venv
+
+# Keep CI fixtures tracked even if a global ignore rule excludes tests/
+!tests/
+!tests/fixtures/
+!tests/fixtures/document-writer/
+!tests/fixtures/document-writer/report-body/
+!tests/fixtures/document-writer/report-body/*.md
