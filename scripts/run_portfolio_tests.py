@@ -145,9 +145,15 @@ def test_orchestrator_pipeline_consistency() -> None:
 def test_document_writer_e2e() -> None:
     fixture = ROOT / "tests" / "fixtures" / "document-writer"
     dw_dir = SKILLS_DIR / "document-writer" / "scripts"
+
+    fixture_report_body = fixture / "report-body"
+    assert_true(
+        fixture_report_body.exists(),
+        f"missing fixture directory: {fixture_report_body}",
+    )
     with tempfile.TemporaryDirectory() as tmp:
         tmpdir = Path(tmp)
-        shutil.copytree(fixture / "report-body", tmpdir / "report-body")
+        shutil.copytree(fixture_report_body, tmpdir / "report-body")
         (tmpdir / "full").mkdir(parents=True, exist_ok=True)
         (tmpdir / "tracking").mkdir(parents=True, exist_ok=True)
 
