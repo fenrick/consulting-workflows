@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brief Storyline Architect"
+  short_description: "Turn brief and evidence into consulting storyline logic"
+  default_prompt: "Use this skill to convert the brief and evidence catalog into a consulting-grade storyline with governing question, pillars, support logic, and proof gaps."

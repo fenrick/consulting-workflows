@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workshop Writeup Composer"
+  short_description: "Generate formal workshop writeups from transcripts and artifacts"
+  default_prompt: "Use this skill to convert workshop transcripts and input/output materials into a formal write-up with decisions, outputs, action items, and unresolved issues."

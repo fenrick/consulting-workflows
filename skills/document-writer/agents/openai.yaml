@@ -1,0 +1,4 @@
+interface:
+  display_name: "Document Writer"
+  short_description: "Markdown-first writing workflow for substantial documents"
+  default_prompt: "Use the document-writer skill as the workflow owner. Create the tracking files, draft the canonical content in markdown, keep findings in tracking files, treat packaged document or PDF generation as downstream packaging rather than the authoring surface, and keep the working files with the final output."

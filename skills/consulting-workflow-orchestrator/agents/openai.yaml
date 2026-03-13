@@ -1,0 +1,4 @@
+interface:
+  display_name: "Consulting Workflow Orchestrator"
+  short_description: "Coordinate end-to-end consulting skill pipeline with stage gates"
+  default_prompt: "Use this skill to run the consulting workflow across intake, storyline, storyboard, and drafting stages with explicit handoff checks and consistent quality gates."
