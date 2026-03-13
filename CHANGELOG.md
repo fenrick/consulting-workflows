@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/fenrick/consulting-workflows/compare/v1.0.1...v1.1.0) (2026-03-13)
+
+
+### Features
+
+* **release:** package versioned collection and per-skill archives ([431a12b](https://github.com/fenrick/consulting-workflows/commit/431a12be0b3a7e07474598cff84f6c39c60eea90))
+
 ## [1.0.1](https://github.com/fenrick/consulting-workflows/compare/v1.0.0...v1.0.1) (2026-03-13)
 
 
