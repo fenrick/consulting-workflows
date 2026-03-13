@@ -1,5 +1,20 @@
 # Validation Checklist
 
+## Purpose
+
+Use this checklist to decide whether the document is fit for release, packaging, or user review.
+
+It is a release gate. If a check fails, either fix the document or log the issue explicitly.
+
+## How to use this checklist
+
+Run the checklist after major revisions and again before treating the document as final.
+
+- Run source and structure checks before spending time on polish.
+- Run voice and content checks before final packaging.
+- Run file, media, and review checks immediately before release or handoff.
+- If a check cannot be satisfied yet, record that explicitly in tracking rather than assuming it will be handled later.
+
 ## Source checks
 
 - Every changed factual claim is traceable to a readable working source set, or is explicitly marked as requiring user-supplied source confirmation.
