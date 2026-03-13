@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/fenrick/consulting-workflows/compare/v1.0.0...v1.0.1) (2026-03-13)
+
+
+### Bug Fixes
+
+* **release:** upload packaged skill zip as release asset ([cb0ed4e](https://github.com/fenrick/consulting-workflows/commit/cb0ed4e760293ff26bdf64e744219d74aff617f3))
+
 # 1.0.0 (2026-03-13)
 
 
