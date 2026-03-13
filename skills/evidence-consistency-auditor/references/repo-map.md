@@ -1,5 +1,9 @@
 # Evidence Consistency Audit Repo Map
 
+## Purpose
+
+This map shows where the audit state should live so that contradictions, weak support, and risk decisions remain visible.
+
 ## Main files
 
 - `tracking/evidence-consistency-report.md`: the audit baseline

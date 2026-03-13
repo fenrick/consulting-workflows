@@ -1,5 +1,9 @@
 # Consulting Workflow Orchestrator Repo Map
 
+## Purpose
+
+This map shows where workflow control state should live so that orchestration survives handoffs and interruptions.
+
 ## Main files
 
 - `tracking/workflow-runbook.md`: detailed control log for each stage

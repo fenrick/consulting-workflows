@@ -1,5 +1,9 @@
 # Workshop Write-up Repo Map
 
+## Purpose
+
+This map shows where the reconstructed workshop record should live so traceability survives review.
+
 ## Main files
 
 - `tracking/workshop-writeup.md`: the live workshop write-up

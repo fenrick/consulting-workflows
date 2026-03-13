@@ -1,5 +1,11 @@
 # Evidence Consistency Audit Term Sheet
 
+## Purpose
+
+Use this sheet to keep audit language precise. Loose terminology makes contradictions look softer than they are.
+
+## Core terms
+
 - `contradiction`: two claims that cannot both stand as written
 - `weak support`: a claim with insufficient evidence but no direct contradiction
 - `supersession`: one source replacing another as the current baseline
@@ -12,3 +18,4 @@
 - Prefer `contradiction` only for real incompatibility.
 - Prefer `weak support` for under-evidenced claims.
 - Use `residual risk` when a problem remains by decision, not accident.
+- Keep severity and confidence separate in the report.

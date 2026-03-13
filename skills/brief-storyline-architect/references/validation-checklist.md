@@ -1,5 +1,20 @@
 # Brief Storyline Validation Checklist
 
+## Purpose
+
+Use this checklist to test whether the storyline is ready for serious review and downstream handoff.
+
+It is not a ceremonial sign-off. If a check fails, fix the storyline or log the issue explicitly.
+
+## How to use this checklist
+
+Work from top to bottom after a material revision.
+
+- Run framing checks before arguing about wording.
+- Run logic checks before polishing prose.
+- Run writing checks before handoff.
+- If a check fails and cannot be fixed immediately, record it in `tracking/open-questions.md` or `tracking/decision-log.md`.
+
 ## Framing checks
 
 - The governing question states the decision problem clearly.

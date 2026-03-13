@@ -1,5 +1,17 @@
 # Report Storyboard Validation Checklist
 
+## Purpose
+
+Use this checklist to confirm that the report structure is usable by writers and defensible against the storyline and evidence base.
+
+## How to use this checklist
+
+Run it after the first complete section map and again after major resequencing.
+
+- Check section logic before sentence quality.
+- Check evidence obligations before handoff.
+- Check writing quality last.
+
 ## Section logic checks
 
 - Every section has one clear purpose.

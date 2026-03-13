@@ -1,5 +1,17 @@
 # Evidence Consistency Audit Validation Checklist
 
+## Purpose
+
+Use this checklist to confirm that the audit findings are real, sourced, and ready to drive correction work.
+
+## How to use this checklist
+
+Run it after the first audit pass and after every material revision to audited artifacts.
+
+- Check coverage before debating severity.
+- Check resolution handling before closing issues.
+- Check writing last so prose quality does not distract from factual control.
+
 ## Audit coverage checks
 
 - All claim-bearing artifacts in scope were listed.

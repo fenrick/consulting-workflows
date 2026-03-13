@@ -1,5 +1,17 @@
 # Workshop Write-up Validation Checklist
 
+## Purpose
+
+Use this checklist to confirm that the workshop write-up is evidence-led, explicit about uncertainty, and safe to circulate.
+
+## How to use this checklist
+
+Run it after the first draft and again after major reconciliation of transcripts or artifacts.
+
+- Check evidence first.
+- Check structure second.
+- Check writing quality last.
+
 ## Evidence checks
 
 - Major discussion themes cite transcript or artifact support.

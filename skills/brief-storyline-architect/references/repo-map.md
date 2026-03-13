@@ -1,5 +1,11 @@
 # Brief Storyline Repo Map
 
+## Purpose
+
+This map shows where storyline work should live in a normal target repo and what each file is responsible for.
+
+Use it to avoid scattering storyline state across chat, scratch files, or downstream drafting files.
+
 ## Main files
 
 - `tracking/storyline-architecture.md`: live storyline baseline

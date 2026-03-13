@@ -1,5 +1,9 @@
 # Input Evidence Catalog Repo Map
 
+## Purpose
+
+This map shows where intake outputs should live so that later stages can reuse them without re-inventorying the corpus.
+
 ## Main files
 
 - `tracking/source-register.md`: one row per source with provenance and status

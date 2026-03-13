@@ -1,5 +1,9 @@
 # Report Storyboard Repo Map
 
+## Purpose
+
+This map shows where report structure planning should live before detailed prose drafting starts.
+
 ## Main files
 
 - `tracking/report-storyboard.md`: live section-level storyboard

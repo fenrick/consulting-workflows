@@ -1,5 +1,9 @@
 # Presentation Storyboard Repo Map
 
+## Purpose
+
+This map shows where storyboard planning should live so the narrative sequence does not get buried in deck-production files.
+
 ## Main files
 
 - `tracking/presentation-storyboard.md`: the live slide-by-slide storyboard

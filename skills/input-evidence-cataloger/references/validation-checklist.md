@@ -1,5 +1,17 @@
 # Input Evidence Catalog Validation Checklist
 
+## Purpose
+
+Use this checklist to confirm that intake outputs are factual, complete enough for downstream use, and explicit about what remains unknown.
+
+## How to use this checklist
+
+Run it after the first full inventory and again before handoff.
+
+- Check inventory coverage first.
+- Check fact extraction discipline second.
+- Check writing quality last.
+
 ## Inventory checks
 
 - Every input item in scope appears in the source register.

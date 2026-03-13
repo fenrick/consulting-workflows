@@ -1,5 +1,17 @@
 # Presentation Storyboard Validation Checklist
 
+## Purpose
+
+Use this checklist to confirm that the slide sequence is message-tight, evidence-backed, and ready for deck production.
+
+## How to use this checklist
+
+Run it after the first full sequence and again after major resequencing.
+
+- Check slide logic before arguing about visuals.
+- Check evidence support before polishing wording.
+- Check writing quality before handoff.
+
 ## Slide logic checks
 
 - Every slide has one clear audience takeaway.
