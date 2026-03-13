@@ -276,6 +276,55 @@ def test_reference_docs_are_discoverable_from_skill_contract() -> None:
             )
 
 
+def test_reference_doc_heading_contract() -> None:
+    expected_headings = {
+        "workflow.md": (
+            "## Purpose",
+            "## Working files",
+            "## Back-iteration loop",
+            "## Handoff and closure",
+        ),
+        "quality-standard.md": (
+            "## Purpose",
+            "## Core standard",
+            "## Authoring standard",
+            "## Tracking standard",
+            "## Handoff standard",
+        ),
+        "validation-checklist.md": (
+            "## Purpose",
+            "## How to use this checklist",
+        ),
+        "term-sheet.md": (
+            "## Purpose",
+            "## Core terms",
+            "## Usage rules",
+            "## Drift-control rules",
+        ),
+        "repo-map.md": (
+            "## Purpose",
+            "## Main files",
+            "## Typical flow",
+            "## Handoff note",
+        ),
+        "tracking-readme.md": (
+            "## Purpose",
+            "## Template roles",
+            "## Working rule",
+        ),
+    }
+    for path in find_skill_files():
+        references_dir = path.parent / "references"
+        for ref_name, headings in expected_headings.items():
+            ref_path = references_dir / ref_name
+            text = ref_path.read_text(encoding="utf-8")
+            for heading in headings:
+                assert_true(
+                    heading in text,
+                    f"{path.parent.name}: {ref_name} missing heading `{heading}`",
+                )
+
+
 def test_packaging_smoke() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         output_dir = Path(tmp) / "package-out"

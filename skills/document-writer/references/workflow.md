@@ -16,7 +16,23 @@ When using the bundled scripts from a shared skill install, run them from the ta
 
 Source-reading helpers such as spreadsheet, PDF, or document-format tools may be used to inspect inputs. They do not become the authoring workflow. Their output should be notes, extracted facts, or validation results that feed back into markdown drafting.
 
-## 1. Start the document
+## Working files
+
+- `tracking/document-brief.md`
+- `tracking/source-register.md`
+- `tracking/section-status.md`
+- `tracking/decision-log.md`
+- `tracking/open-questions.md`
+- `tracking/editorial-pass.md`
+- `tracking/release-check.md`
+- `tracking/review-notebook.md`
+- `tracking/findings-workbook.md`
+- `report-body/`
+- `full/`
+
+## Operating sequence
+
+### 1. Start the document
 
 Before drafting, establish the operating frame.
 
@@ -63,7 +79,7 @@ Record:
 
 Do not carry placeholder title or subtitle text beyond the scaffolding step.
 
-## 2. Intake and classify sources
+### 2. Intake and classify sources
 
 Do not start writing until the source base is mapped.
 
@@ -93,7 +109,7 @@ Do not force later passes to rediscover important patterns from first sources if
 
 If a source helper is used here, promote what it finds into the source register and review notebook. Do not leave important observations stranded in a tool transcript or script output.
 
-## 3. Set the writing frame
+### 3. Set the writing frame
 
 Before editing the body, lock these items:
 
@@ -119,7 +135,7 @@ If the audience includes non-specialists:
 - identify the main user or stakeholder groups visible in the evidence
 - put this orientation before dense findings
 
-## 4. Build or confirm the structure
+### 4. Build or confirm the structure
 
 Check that the structure serves the story before refining sentences.
 
@@ -149,7 +165,7 @@ At section level:
 
 The number and naming of sections should follow the document, not this template. The only hard contract is ordered `NN - Title.md` files for assembly.
 
-## 5. Draft a section
+### 5. Draft a section
 
 ### Step 1: gather the inputs
 
@@ -191,7 +207,7 @@ The section close should:
 
 If the close only repeats the body text, it is too weak.
 
-## 6. Handle figures properly
+### 6. Handle figures properly
 
 Every figure must earn its place.
 
@@ -239,7 +255,7 @@ If a figure is reconstructed from code or other evidence rather than copied from
 - keep the diagram simpler than the source material
 - explain what the non-specialist reader should notice
 
-## 7. Keep terminology stable
+### 7. Keep terminology stable
 
 Use `controls/term-sheet.md`.
 
@@ -251,7 +267,7 @@ During each pass:
 
 Do not rewrite a stable term just because it has appeared twice already. That is how drift starts.
 
-## 8. Keep the comparative section in bounds
+### 8. Keep the comparative section in bounds
 
 Comparative material should:
 
@@ -268,7 +284,9 @@ It should not:
 
 Keep it selective. Judgment matters more than breadth.
 
-## 9. Run the editing passes in the right order
+## Back-iteration loop
+
+### 9. Run the editing passes in the right order
 
 Use this sequence:
 
@@ -296,7 +314,7 @@ For substantial work, run these passes as a loop, not a single sweep:
 
 The loop matters because a document that reads well section by section can still fail once read end to end.
 
-## 10. Assemble the combined draft
+### 10. Assemble the combined draft
 
 When the split sections are ready, assemble the combined output:
 
@@ -355,7 +373,7 @@ Do not switch to direct binary-document authoring here unless the user explicitl
 
 If another export path is used, it must consume the canonical markdown draft. Do not migrate the document body into a Node, Python, or template generator just to produce the final file.
 
-## 11. References and evidence register pass
+### 11. References and evidence register pass
 
 Before release:
 
@@ -370,7 +388,7 @@ Before release:
 
 Code-specific implementation evidence may still be cited directly in prose by file and line reference when that is clearer than a bibliography citation.
 
-## 12. Final voice pass
+### 12. Final voice pass
 
 Use the strongest plain-language sections as the benchmark for the weakest sections.
 
@@ -390,7 +408,7 @@ Minimum release expectation:
 - review the output after each pass
 - stop only when the next pass would make trivial or no meaningful changes
 
-## 13. Use skills deliberately
+### 13. Use skills deliberately
 
 Use the smallest relevant skill set for the task. In environments that provide companion skills, the usual choices are:
 
@@ -409,7 +427,7 @@ Do not let a code generator become the hidden canonical source of the document.
 
 Do not let a spreadsheet helper become the hidden planner of the document either. Source extraction is upstream of writing, not a substitute for it.
 
-## 14. Commit and branch discipline
+### 14. Commit and branch discipline
 
 When a major pass is complete:
 
@@ -424,7 +442,9 @@ When resetting the repo for a new document stream:
 - remove document-specific content deliberately
 - replace it with reusable templates rather than leaving gaps
 
-## 15. Minimum release gate
+## Handoff and closure
+
+### 15. Minimum release gate
 
 The document is not ready until:
 

@@ -77,6 +77,43 @@ REQUIRED_REFERENCE_FILES = {
     "tracking-readme.md",
 }
 
+REFERENCE_REQUIRED_HEADINGS = {
+    "workflow.md": [
+        "## Purpose",
+        "## Working files",
+        "## Back-iteration loop",
+        "## Handoff and closure",
+    ],
+    "quality-standard.md": [
+        "## Purpose",
+        "## Core standard",
+        "## Authoring standard",
+        "## Tracking standard",
+        "## Handoff standard",
+    ],
+    "validation-checklist.md": [
+        "## Purpose",
+        "## How to use this checklist",
+    ],
+    "term-sheet.md": [
+        "## Purpose",
+        "## Core terms",
+        "## Usage rules",
+        "## Drift-control rules",
+    ],
+    "repo-map.md": [
+        "## Purpose",
+        "## Main files",
+        "## Typical flow",
+        "## Handoff note",
+    ],
+    "tracking-readme.md": [
+        "## Purpose",
+        "## Template roles",
+        "## Working rule",
+    ],
+}
+
 MAX_SKILL_LINES = 220
 MAX_SKILL_TOKENS_APPROX = 3500
 
@@ -191,6 +228,14 @@ def main() -> int:
         )
         for ref in missing_reference_files:
             errors.append(f"{file_path.parent}: missing references/{ref}")
+        for ref_name, headings in REFERENCE_REQUIRED_HEADINGS.items():
+            ref_path = references_dir / ref_name
+            if not ref_path.exists():
+                continue
+            ref_text = ref_path.read_text(encoding="utf-8")
+            for heading in headings:
+                if heading not in ref_text:
+                    errors.append(f"{ref_path}: missing heading `{heading}`")
 
         # validate optional openai adapter metadata if present.
         openai_yaml = file_path.parent / "agents" / "openai.yaml"

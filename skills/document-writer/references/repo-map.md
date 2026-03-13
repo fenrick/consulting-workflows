@@ -6,7 +6,7 @@ This map shows where canonical document content, media, bibliography, tracking f
 
 Use it to keep authoring state in predictable locations and stop the delivery tooling from becoming the hidden source of truth.
 
-## Main working surfaces
+## Main files
 
 - `report-body/`: canonical split draft
 - `report-body/diagrams/`: editable Mermaid source files when diagrams are authored in Mermaid
