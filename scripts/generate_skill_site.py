@@ -55,6 +55,7 @@ body {
   margin: 0;
   font-family: var(--sans);
   color: var(--foreground);
+  font-size: 15px;
   background:
     radial-gradient(circle at top, rgba(99, 102, 241, 0.09), transparent 32%),
     linear-gradient(180deg, rgba(245, 247, 250, 0.9), rgba(255, 255, 255, 1));
@@ -125,7 +126,7 @@ pre code { background: transparent; padding: 0; color: inherit; }
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 0.9rem;
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.92);
   border-radius: 999px;
@@ -151,16 +152,17 @@ pre code { background: transparent; padding: 0; color: inherit; }
 }
 .nav a {
   color: var(--muted-foreground);
-  padding: 0.55rem 0.85rem;
+  padding: 0.48rem 0.72rem;
   border-radius: 999px;
   touch-action: manipulation;
+  font-size: 0.95rem;
 }
 .nav a:hover {
   background: rgba(99, 102, 241, 0.08);
   text-decoration: none;
 }
 .hero {
-  padding: 2rem 0 1.75rem;
+  padding: 1.35rem 0 1.25rem;
 }
 .hero-card {
   position: relative;
@@ -170,7 +172,7 @@ pre code { background: transparent; padding: 0; color: inherit; }
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: calc(var(--radius-xl) + 0.25rem);
-  padding: 2rem;
+  padding: 1.4rem;
   box-shadow: var(--shadow);
 }
 .eyebrow {
@@ -189,39 +191,40 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-  gap: 1.25rem;
+  gap: 1rem;
 }
 .hero h1 {
-  margin: 0.9rem 0 0.85rem;
-  font-size: clamp(2.6rem, 5vw, 4.6rem);
-  line-height: 0.95;
+  margin: 0.75rem 0 0.65rem;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 0.98;
   letter-spacing: -0.07em;
-  max-width: 11ch;
+  max-width: 13ch;
   text-wrap: balance;
 }
 .hero p {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: var(--muted-foreground);
-  max-width: 46rem;
-  line-height: 1.65;
+  max-width: 40rem;
+  line-height: 1.6;
 }
 .hero-actions {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
-  margin-top: 1.35rem;
+  margin-top: 1.05rem;
 }
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.84rem 1.08rem;
+  padding: 0.72rem 0.92rem;
   border-radius: 999px;
   font-weight: 600;
   border: 1px solid transparent;
   touch-action: manipulation;
+  font-size: 0.94rem;
 }
 .button-primary {
   color: var(--primary-foreground);
@@ -239,14 +242,14 @@ pre code { background: transparent; padding: 0; color: inherit; }
 }
 .hero-stats {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.65rem;
 }
 .stat {
   background: rgba(255, 255, 255, 0.82);
   color: var(--foreground);
   border: 1px solid rgba(255, 255, 255, 0.88);
   border-radius: calc(var(--radius-lg) + 0.1rem);
-  padding: 1rem;
+  padding: 0.85rem 0.9rem;
   box-shadow: var(--shadow-tight);
 }
 .stat-label {
@@ -257,7 +260,7 @@ pre code { background: transparent; padding: 0; color: inherit; }
   margin-bottom: 0.32rem;
 }
 .stat-value {
-  font-size: 1.95rem;
+  font-size: 1.55rem;
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.95;
@@ -266,31 +269,32 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .stat-copy {
   margin-top: 0.35rem;
   color: var(--muted-foreground);
-  font-size: 0.94rem;
+  font-size: 0.88rem;
   line-height: 1.55;
 }
 .section {
-  padding: 1.15rem 0 2rem;
+  padding: 0.95rem 0 1.6rem;
 }
 .section-head {
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 .section-head h2 {
   margin: 0;
-  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
   letter-spacing: -0.06em;
   text-wrap: balance;
 }
 .section-head p {
   margin: 0.48rem 0 0;
   color: var(--muted-foreground);
-  max-width: 44rem;
-  line-height: 1.65;
+  max-width: 40rem;
+  line-height: 1.58;
+  font-size: 0.95rem;
 }
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 1rem;
+  gap: 0.85rem;
 }
 .skill-card, .panel {
   background: var(--card);
@@ -302,10 +306,10 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .skill-card {
   position: relative;
   overflow: hidden;
-  padding: 1.15rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.72rem;
 }
 .skill-card::before {
   content: "";
@@ -316,7 +320,7 @@ pre code { background: transparent; padding: 0; color: inherit; }
 }
 .skill-card h3 {
   margin: 0;
-  font-size: 1.24rem;
+  font-size: 1.08rem;
   line-height: 1.08;
   letter-spacing: -0.05em;
   text-wrap: balance;
@@ -324,7 +328,13 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .skill-card p {
   margin: 0;
   color: var(--muted-foreground);
-  line-height: 1.58;
+  line-height: 1.5;
+  font-size: 0.92rem;
+  min-height: 2.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .meta-row {
   display: flex;
@@ -338,7 +348,7 @@ pre code { background: transparent; padding: 0; color: inherit; }
   border-radius: 999px;
   background: rgba(99, 102, 241, 0.08);
   color: var(--primary-strong);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 600;
 }
 .pill.alt {
@@ -355,16 +365,20 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .two-col {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-  gap: 1rem;
+  gap: 0.85rem;
 }
 .panel {
-  padding: 1.2rem;
+  padding: 1rem;
 }
 .panel h3 {
   margin: 0 0 0.8rem;
-  font-size: 1.14rem;
+  font-size: 1rem;
   line-height: 1.1;
   letter-spacing: -0.04em;
+}
+.panel p,
+.panel li {
+  font-size: 0.94rem;
 }
 .panel p:last-child { margin-bottom: 0; }
 .steps {
@@ -384,8 +398,8 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .page-grid {
   display: grid;
   grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
-  gap: 1.1rem;
-  padding: 1rem 0 2.3rem;
+  gap: 0.9rem;
+  padding: 0.8rem 0 2rem;
 }
 .sidebar {
   position: sticky;
@@ -406,12 +420,19 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .sidebar a {
   color: var(--muted-foreground);
   display: block;
-  padding: 0.28rem 0.1rem;
+  padding: 0.32rem 0.55rem;
+  border-radius: calc(var(--radius) * 0.9);
+  font-size: 0.9rem;
 }
 .sidebar a:hover {
   color: var(--foreground);
+  background: rgba(99, 102, 241, 0.07);
 }
-.content .panel + .panel { margin-top: 1rem; }
+.content {
+  min-width: 0;
+  max-width: 54rem;
+}
+.content .panel + .panel { margin-top: 0.85rem; }
 .content h2,
 .content h3 {
   letter-spacing: -0.05em;
@@ -419,8 +440,11 @@ pre code { background: transparent; padding: 0; color: inherit; }
 }
 .content h2 {
   margin-top: 0;
-  font-size: clamp(1.55rem, 2.2vw, 2.1rem);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
   text-wrap: balance;
+}
+.content h3 {
+  font-size: 1rem;
 }
 .content ul,
 .content ol { padding-left: 1.2rem; }
@@ -428,12 +452,13 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .content p,
 .content li {
   color: var(--foreground);
-  line-height: 1.68;
+  line-height: 1.62;
+  font-size: 0.95rem;
 }
 .lead {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--muted-foreground);
-  line-height: 1.65;
+  line-height: 1.58;
 }
 .file-list {
   columns: 2;
@@ -450,25 +475,26 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .reference-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+  gap: 0.85rem;
 }
 .reference-card {
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1rem 1rem 0.95rem;
+  padding: 0.9rem;
   box-shadow: var(--shadow-tight);
 }
 .reference-card h3 {
   margin: 0 0 0.45rem;
-  font-size: 1.08rem;
+  font-size: 0.98rem;
   line-height: 1.08;
   letter-spacing: -0.04em;
 }
 .reference-card p {
   margin: 0 0 0.7rem;
   color: var(--muted-foreground);
-  line-height: 1.58;
+  line-height: 1.52;
+  font-size: 0.9rem;
 }
 .reference-card ul {
   margin: 0;
@@ -482,28 +508,29 @@ pre code { background: transparent; padding: 0; color: inherit; }
 .kicker-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.9rem;
+  gap: 0.75rem;
 }
 .kicker {
   background: linear-gradient(180deg, rgba(79, 70, 229, 0.94), rgba(67, 56, 202, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-lg);
-  padding: 1rem 1rem 1.02rem;
+  padding: 0.9rem;
   color: var(--primary-foreground);
   box-shadow: 0 18px 32px rgba(79, 70, 229, 0.18);
 }
 .kicker h3 {
   margin: 0 0 0.35rem;
-  font-size: 1.12rem;
+  font-size: 1rem;
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
 .kicker p {
   margin: 0;
   color: rgba(247, 248, 255, 0.9);
-  line-height: 1.55;
+  line-height: 1.5;
+  font-size: 0.9rem;
 }
-.hero-index .hero-card { min-height: 27rem; }
+.hero-index .hero-card { min-height: 22rem; }
 .hero-index .hero-grid { align-items: end; }
 .hero-skill .hero-card {
   background:
@@ -826,6 +853,20 @@ def render_inline(text: str) -> str:
     return rendered
 
 
+def normalize_whitespace(text: str) -> str:
+    return " ".join(text.split())
+
+
+def compact_summary(text: str, max_chars: int = 72) -> str:
+    summary = normalize_whitespace(text)
+    if len(summary) <= max_chars:
+        return summary
+    clipped = summary[: max_chars + 1]
+    if " " in clipped:
+        clipped = clipped.rsplit(" ", 1)[0]
+    return clipped.rstrip(" ,;:-") + "…"
+
+
 def file_inventory(skill_dir: Path) -> list[str]:
     files: list[str] = []
     for path in sorted(skill_dir.rglob("*")):
@@ -972,7 +1013,7 @@ def page_template(
 def render_index(skills: list[SkillDoc], repo_url: str, release_url: str) -> str:
     cards = []
     for skill in skills:
-        summary = skill.short_description or skill.description
+        summary = compact_summary(skill.short_description or skill.description)
         cards.append(
             f"""
             <article class="skill-card">
