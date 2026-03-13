@@ -257,6 +257,10 @@ def test_document_writer_mermaid_preprocessing_contract() -> None:
         "![diagram](media/mermaid-figure-01.png)" in transformed and "Figure 1: Example diagram" in transformed,
         "document-writer: Mermaid block was not replaced with a standalone image and caption",
     )
+    assert_true(
+        "{width=5.55in}" in transformed,
+        "document-writer: Mermaid figure width policy regressed",
+    )
 
 
 def test_prohibited_wording() -> None:

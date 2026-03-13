@@ -19,6 +19,7 @@ MERMAID_BLOCK_PATTERN = re.compile(
     r":::mermaid\s*\n(?P<body>.*?)\n:::\s*",
     re.DOTALL,
 )
+DEFAULT_FIGURE_WIDTH = "5.55in"
 
 
 def parse_args() -> argparse.Namespace:
@@ -199,7 +200,7 @@ def preprocess_mermaid_blocks(
             env=env,
         )
         rel_path = image_path.relative_to(working_dir).as_posix()
-        return f"\n![diagram]({rel_path})\n\n{caption}\n\n"
+        return f"\n![diagram]({rel_path}){{width={DEFAULT_FIGURE_WIDTH}}}\n\n{caption}\n\n"
 
     transformed = MERMAID_BLOCK_PATTERN.sub(replace, markdown_text)
     return transformed, figure_index
